@@ -12,6 +12,9 @@ import { UserForumsComponent } from './user-forums/user-forums.component';
     UserFilesComponent,
     UserForumsComponent
   ],
+  exports: [
+    UserLoginComponent
+  ],
   imports: [
     CommonModule
   ]
