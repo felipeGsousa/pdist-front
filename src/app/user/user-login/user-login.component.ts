@@ -1,6 +1,8 @@
 declare var google: any;
 
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { error } from 'console';
 
 @Component({
   selector: 'app-user-login',
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   user: any;
   loggedIn: boolean = false;
@@ -33,10 +35,22 @@ export class UserLoginComponent implements OnInit {
 
   handleCredentialResponse(response: any) {
     // Decode o token JWT
-    const userObject = this.parseJwt(response.credential);
-    console.log(userObject);
-    this.user = userObject;
-    this.loggedIn = true;
+    //const userObject = this.parseJwt(response.credential);
+    //console.log(userObject);
+    //this.user = userObject;
+    //this.loggedIn = true;
+
+    this.http.post("https://auth-service-wjnv.onrender.com/api/auth/google", response.credential).subscribe(
+      data => {
+        console.log('User authenticated', data);
+        this.user = data;
+        this.loggedIn = true;
+      },
+      error => {
+        console.error("Authentication error", error);
+      }
+    );
+
   }
 
   parseJwt(token: string) {
