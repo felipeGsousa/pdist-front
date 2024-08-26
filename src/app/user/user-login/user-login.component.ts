@@ -26,29 +26,29 @@ export class UserLoginComponent implements OnInit {
 
       google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
-        { theme: "outline", size: "large" }  // Personalize o botão
+        { theme: "outline", size: "large" }  
       );
 
-      google.accounts.id.prompt(); // Opcionalmente exibe uma dica de login
+      //google.accounts.id.prompt(); 
     };
   }
 
   handleCredentialResponse(response: any) {
-    const userObject = this.parseJwt(response.credential);
-    console.log(userObject);
-    this.user = userObject;
-    this.loggedIn = true;
+    //const userObject = this.parseJwt(response.credential);
+    //console.log(userObject);
+    //this.user = userObject;
+    //this.loggedIn = true;
 
-    //this.http.post("https://auth-service-wjnv.onrender.com/api/auth/google", response.credential).subscribe(
-    //  data => {
-    //    console.log('User authenticated', data);
-    //    this.user = data;
-    //    this.loggedIn = true;
-    //  },
-    //  error => {
-    //    console.error("Authentication error", error);
-    //  }
-    //);
+    this.http.post("https://auth-service-wjnv.onrender.com/api/auth/google", response.credential).subscribe(
+      data => {
+        console.log('User authenticated', data);
+        this.user = data;
+        this.loggedIn = true;
+      },
+      error => {
+        console.error("Authentication error", error);
+      }
+    );
 
   }
 
