@@ -39,7 +39,7 @@ export class UserLoginComponent implements OnInit {
     //this.user = userObject;
     //this.loggedIn = true;
 
-    this.http.post("https://auth-service-wjnv.onrender.com/api/auth/google", response.credential).subscribe(
+    this.http.post("https://pdist-user-service.onrender.com/api/auth/google", response.credential).subscribe(
       data => {
         console.log('User authenticated', data);
         this.user = data;
