@@ -2,6 +2,7 @@ declare var google: any;
 
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { error } from 'console';
 
 @Component({
@@ -11,7 +12,7 @@ import { error } from 'console';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
 
   user: any;
   loggedIn: boolean = false;
@@ -44,6 +45,7 @@ export class UserLoginComponent implements OnInit {
         console.log('User authenticated', data);
         this.user = data;
         this.loggedIn = true;
+        this.cd.detectChanges();
       },
       error => {
         console.error("Authentication error", error);

@@ -1,7 +1,7 @@
 <div *ngIf="!loggedIn" id="buttonDiv"></div>
 <div *ngIf="loggedIn">
   <p>Bem-vindo, {{ user.name }}!</p>
-  <img [src]="user.picture" alt="User Photo">
+  <img [src]="user.profilePictureUrl" alt="User Photo">
   <p>Email: {{ user.email }}</p>
   <button (click)="logout()">Logout</button>
 </div>
