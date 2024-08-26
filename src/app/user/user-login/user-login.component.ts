@@ -67,6 +67,7 @@ export class UserLoginComponent implements OnInit {
   logout() {
     this.user = null;
     this.loggedIn = false;
+    this.cd.detectChanges();
     google.accounts.id.disableAutoSelect();
   }
 }
