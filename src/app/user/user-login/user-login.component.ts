@@ -30,7 +30,7 @@ export class UserLoginComponent implements OnInit {
         { theme: "outline", size: "large" }  
       );
 
-      //google.accounts.id.prompt(); 
+      google.accounts.id.prompt(); 
     };
   }
 
@@ -45,7 +45,6 @@ export class UserLoginComponent implements OnInit {
         console.log('User authenticated', data);
         this.user = data;
         this.loggedIn = true;
-        this.cd.detectChanges();
       },
       error => {
         console.error("Authentication error", error);
@@ -67,7 +66,7 @@ export class UserLoginComponent implements OnInit {
   logout() {
     this.user = null;
     this.loggedIn = false;
-    this.cd.detectChanges();
+ 
     google.accounts.id.disableAutoSelect();
   }
 }
