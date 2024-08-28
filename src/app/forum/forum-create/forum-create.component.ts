@@ -42,7 +42,7 @@ export class ForumCreateComponent implements OnInit {
   }
 
   addForum() {
-    this.forumData.userId = this.user.userId;
+    this.forumData.userId = this.user.id;
     this.forumService.addForum(this.forumData).subscribe(response => {
       console.log('Fórum criado com sucesso!', response);
     }, error => {
