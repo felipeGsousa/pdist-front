@@ -23,6 +23,6 @@ export class UserService {
   }
 
   getUser() {
-    return this.user;
+    return this.user.userId;
   }
 }
