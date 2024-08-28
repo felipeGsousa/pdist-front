@@ -17,12 +17,14 @@ export class ForumCreateComponent implements OnInit {
     userId: ""
   };
 
-  user: any;
+  user: any = null;
+  loggedIn: boolean = false;
 
   constructor(private forumService: ForumService, private userService:UserService) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
+    this.loggedIn = this.userService.isLoggedIn();
   }
 
   onFileSelected(event: any) {
@@ -40,7 +42,7 @@ export class ForumCreateComponent implements OnInit {
   }
 
   addForum() {
-    console.log(this.user);
+    this.forumData.userId = this.user.userId;
     this.forumService.addForum(this.forumData).subscribe(response => {
       console.log('Fórum criado com sucesso!', response);
     }, error => {

@@ -13,7 +13,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  user: any;
+  user: any = null;
   loggedIn: boolean = false;
 
   ngOnInit() {
@@ -31,6 +31,10 @@ export class UserLoginComponent implements OnInit {
 
       google.accounts.id.prompt(); 
     };
+
+    this.user = this.userService.getUser();
+    this.loggedIn = this.userService.isLoggedIn();
+
   }
 
   handleCredentialResponse(response: any) {
@@ -45,7 +49,6 @@ export class UserLoginComponent implements OnInit {
         this.user = data;
         this.loggedIn = true;
         this.userService.setUser(this.user, this.loggedIn);
-        console.log(this.user);
       },
       error => {
         console.error("Authentication error", error);
@@ -67,7 +70,7 @@ export class UserLoginComponent implements OnInit {
   logout() {
     this.user = null;
     this.loggedIn = false;
-    this.userService.setUser(this.user, this.loggedIn);
+    this.userService.clearUser();
     google.accounts.id.disableAutoSelect();
   }
 }
