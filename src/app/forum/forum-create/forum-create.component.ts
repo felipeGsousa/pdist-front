@@ -17,9 +17,12 @@ export class ForumCreateComponent implements OnInit {
     userId: ""
   };
 
+  user: any;
+
   constructor(private forumService: ForumService, private userService:UserService) { }
 
   ngOnInit(): void {
+    this.user = this.userService.getUser();
   }
 
   onFileSelected(event: any) {
