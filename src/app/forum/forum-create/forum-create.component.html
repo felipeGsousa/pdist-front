@@ -1,0 +1,12 @@
+<form (ngSubmit)="addForum()" #forumForm="ngForm">
+    <label for="name">Título do Fórum:</label>
+    <input id="name" name="name" [(ngModel)]="forumData.name" required placeholder="Digite o título do fórum">
+  
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" [(ngModel)]="forumData.description" required placeholder="Descreva o fórum"></textarea>
+  
+    <label for="image">Banner:</label>
+    <input type="file" (change)="onFileSelected($event)" required>
+  
+    <button type="submit">Criar Fórum</button>
+</form>

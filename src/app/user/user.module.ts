@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserFilesComponent } from './user-files/user-files.component';
 import { UserForumsComponent } from './user-forums/user-forums.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 
@@ -10,7 +11,8 @@ import { UserForumsComponent } from './user-forums/user-forums.component';
   declarations: [
     UserLoginComponent,
     UserFilesComponent,
-    UserForumsComponent
+    UserForumsComponent,
+    UserDetailsComponent
   ],
   exports: [
     UserLoginComponent

@@ -1,9 +1,8 @@
 declare var google: any;
 
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
 import { error } from 'console';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
   selector: 'app-user-login',
@@ -12,7 +11,7 @@ import { error } from 'console';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
+  constructor(private userService: UserService) { }
 
   user: any;
   loggedIn: boolean = false;
@@ -39,12 +38,13 @@ export class UserLoginComponent implements OnInit {
     //console.log(userObject);
     //this.user = userObject;
     //this.loggedIn = true;
+    //this.http.post("https://pdist-user-service.onrender.com/api/auth/google", response.credential).subscribe(
 
-    this.http.post("https://pdist-user-service.onrender.com/api/auth/google", response.credential).subscribe(
+    this.userService.login(response.credential).subscribe(  
       data => {
         this.user = data;
         this.loggedIn = true;
-        console.log('User authenticated', this.loggedIn);
+        this.userService.setUser(this.user, this.loggedIn);
       },
       error => {
         console.error("Authentication error", error);
@@ -66,7 +66,7 @@ export class UserLoginComponent implements OnInit {
   logout() {
     this.user = null;
     this.loggedIn = false;
- 
+    this.userService.setUser(this.user, this.loggedIn);
     google.accounts.id.disableAutoSelect();
   }
 }
