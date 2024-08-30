@@ -1,12 +1,54 @@
-<form (ngSubmit)="addForum()" #forumForm="ngForm">
-    <label for="name">Título do Fórum:</label>
-    <input id="name" name="name" [(ngModel)]="forumData.name" required placeholder="Digite o título do fórum">
+<div class="container">
+    <form (ngSubmit)="addForum()" #forumForm="ngForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input id="name" name="name" [(ngModel)]="forumData.name" required placeholder="Insert a name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" [(ngModel)]="forumData.description" required placeholder="Set a description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="image">Banner:</label>
+            <input type="file" class="btn btn-default" (change)="onFileSelected($event)" accept="image/png">
+        </div>   
+        <div class="form-group">
+            <label for="topic">Topics:</label>
+            <select class="form-control" id="topic" required>
+              <option *ngFor="let topic of topics" [value]="topic">{{topic}}</option>
+            </select>
+        </div> 
+    
+        <button type="submit" class="btn btn-default">Criar Fórum</button>
+    </form>
+</div>
+
+<!---<mat-card>
+    <mat-card-header >
+      <mat-card-title>Inserir Usuário</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="conteudo-usuario">
+      <mat-form-field appearance="fill" class="mat-form-simples">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="nome">
+      </mat-form-field>
   
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" [(ngModel)]="forumData.description" required placeholder="Descreva o fórum"></textarea>
+      <mat-form-field appearance="fill" class="mat-form-simples">
+        <mat-label>email</mat-label>
+        <input matInput placeholder="email">
+      </mat-form-field>
   
-    <label for="image">Banner:</label>
-    <input type="file" (change)="onFileSelected($event)" required>
+      <mat-form-field appearance="fill" class="mat-form-simples">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" placeholder="senha">
+      </mat-form-field>
   
-    <button type="submit">Criar Fórum</button>
-</form>
+      <mat-form-field appearance="fill" class="mat-form-simples">
+        <mat-label>Data de Nascimento</mat-label>
+        <input  matInput type="date" placeholder="nascimento">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-footer align="center">
+      <button mat-raised-button >Cadastrar</button>
+    </mat-card-footer>
+</mat-card>--->

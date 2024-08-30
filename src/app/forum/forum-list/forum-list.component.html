@@ -1,1 +1,18 @@
-<p>forum-list works!</p>
+<div *ngIf="forums.length > 0; else noForums">
+    <div *ngFor="let forum of forums" class="forum-item">
+        <h3>{{ forum.name }}</h3>
+        <p>{{ forum.description }}</p>
+        <div *ngIf = "forum.posts.length > 0">
+            <div *ngFor="let post of forum.posts" class="post-item">
+                <h3>{{post.title}}</h3>
+                <p>{{post.id}}</p>
+                <p>{{post.date}}</p>
+            </div>
+        </div>
+    
+    </div>
+</div>
+  
+<ng-template #noForums>
+    <p>No forums available.</p>
+</ng-template>

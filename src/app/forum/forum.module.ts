@@ -5,6 +5,11 @@ import { ForumListComponent } from './forum-list/forum-list.component';
 import { ForumEditComponent } from './forum-edit/forum-edit.component';
 import { ForumDetailsComponent } from './forum-details/forum-details.component';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -16,11 +21,17 @@ import { FormsModule } from '@angular/forms';
     ForumDetailsComponent
   ],
   exports: [
-    ForumCreateComponent
+    ForumCreateComponent,
+    ForumListComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
   ]
 })
 export class ForumModule { }

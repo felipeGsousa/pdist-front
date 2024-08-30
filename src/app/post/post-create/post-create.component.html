@@ -1,1 +1,19 @@
-<p>post-create works!</p>
+<div class="container">
+    <form (ngSubmit)="addPost()" #postForm="ngForm">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input id="title" name="title" [(ngModel)]="postData.title" required placeholder="Insert a name">
+        </div>
+        <div class="form-group">
+            <label for="ctt">Content:</label>
+            <textarea id="ctt" name="ctt" [(ngModel)]="postData.content" required placeholder="Set a content"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="file">File:</label>
+            <input type="file" class="btn btn-default" (change)="onFileSelected($event)">
+        </div>    
+    
+        <button type="submit" class="btn btn-default">Criar Post</button>
+    </form>
+</div>
+    

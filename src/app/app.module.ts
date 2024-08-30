@@ -7,6 +7,9 @@ import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ForumModule } from './forum/forum.module';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PostModule } from './post/post.module';
+
 
 @NgModule({
   declarations: [
@@ -16,9 +19,10 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     UserModule,
     ForumModule,
-    FormsModule,
+    PostModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,6 +17,14 @@ export class ForumCreateComponent implements OnInit {
     userId: ""
   };
 
+  topics = ["Educação","Sustentabilidade","Tecnologia",
+    "Psicologia","Fotografia","Literatura","Economia",
+    "Arquitetura","Música","Medicina",
+    "Urbanismo","História","Moda","Design",
+    "Astronomia","Cinema","Culinária",
+    "Jornalismo","Esporte","Saúde"
+  ]
+
   user: any = null;
   loggedIn: boolean = false;
 
@@ -29,6 +37,14 @@ export class ForumCreateComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+    
+    if (file) {
+      if (file.type !== 'image/png') {
+        alert('Por favor, selecione um arquivo PNG.');
+        return;
+      }
+    }
+    
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -44,9 +60,9 @@ export class ForumCreateComponent implements OnInit {
   addForum() {
     this.forumData.userId = this.user.id;
     this.forumService.addForum(this.forumData).subscribe(response => {
-      console.log('Fórum criado com sucesso!', response);
+      console.log('Forum creating succesfully:', response);
     }, error => {
-      console.error('Erro ao criar fórum:', error);
+      console.error('Error creating forum:', error);
     });
   }
 }
