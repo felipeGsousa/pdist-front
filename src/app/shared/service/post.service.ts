@@ -12,7 +12,7 @@ export class PostService {
   private url = "https://pdist-back.onrender.com/api/posts";
   //private url = "http://localhost:8080/api/posts"
   //private fileUrl = "http://localhost:8080/api/files"
-  private fileUrl = "https://pdist-back.onrender.com/api/files"
+  private fileUrl = "https://pdist-file-service.onrender.com/api/files"
 
   constructor(private http: HttpClient) { }
 
