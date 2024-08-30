@@ -8,8 +8,8 @@ import { ForumDTO } from '../model/forumDTO';
 })
 export class ForumService {
 
-  //private url = "https://pdist-back.onrender.com/api/forums";
-  private url = "http://localhost:8080/api/forums";
+  private url = "https://pdist-back.onrender.com/api/forums";
+  //private url = "http://localhost:8080/api/forums";
 
   constructor(private http: HttpClient) { }
 
