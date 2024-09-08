@@ -1,18 +1,18 @@
 <div *ngIf="posts.length > 0; else noPosts">
-    <div *ngFor="let post of posts" class="post-item">
+    <div *ngFor="let post of posts" class="post-item" (click) = "getPost(post.id)">
       <h3>{{ post.title }}</h3>
       <p>{{ post.content }}</p>
-      <div *ngIf="fileUrl">
+      <div *ngIf="post.fileUrl">
 
-        <img *ngIf="contentType?.startsWith('image/')" [src]="fileUrl" alt="Imagem">
+        <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
       
-        <video *ngIf="contentType?.startsWith('video/')" [src]="fileUrl" controls></video>
+        <video *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
       
-        <audio *ngIf="contentType?.startsWith('audio/')" [src]="fileUrl" controls></audio>
+        <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
       
-        <a *ngIf="!contentType?.startsWith('image/') && !contentType?.startsWith('video/') && !contentType?.startsWith('audio/')"
-           [href]="fileUrl" download="{{filename}}">
-          Baixar {{filename}}
+        <a *ngIf="!post.fileType?.startsWith('image/') && !post.fileType?.startsWith('video/') && !post.fileType?.startsWith('audio/')"
+           [href]="post.fileUrl" download="{{post.fileName}}">
+          Baixar {{post.fileName}}
         </a>
         
       </div>
@@ -21,5 +21,5 @@
 
   
 <ng-template #noPosts>
-    <p>No forums available.</p>
+    <p>No Posts found.</p>
 </ng-template>

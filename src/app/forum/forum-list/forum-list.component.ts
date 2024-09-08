@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ForumDTO } from 'src/app/shared/model/forumDTO';
 import { ForumService } from 'src/app/shared/service/forum.service';
 
@@ -11,7 +12,7 @@ export class ForumListComponent implements OnInit {
 
   forums: ForumDTO[] = [];
 
-  constructor(private forumService: ForumService) { }
+  constructor(private forumService: ForumService,  private router: Router) { }
 
   ngOnInit(): void {
     this.loadForums();
@@ -27,5 +28,9 @@ export class ForumListComponent implements OnInit {
       }
     );
   }
-  
+
+  getForum(postId: string): void{
+    this.forumService.setForumId(postId);
+    this.router.navigate(['/get-forum']);
+  }
 }

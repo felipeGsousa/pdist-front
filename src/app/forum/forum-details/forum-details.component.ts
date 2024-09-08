@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { error } from 'console';
+import { ForumDTO } from 'src/app/shared/model/forumDTO';
+import { ForumService } from 'src/app/shared/service/forum.service';
 
 @Component({
   selector: 'app-forum-details',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForumDetailsComponent implements OnInit {
 
-  constructor() { }
+  forumId: string = "";
+  forumDTO: ForumDTO | undefined;
+
+  constructor(private forumService: ForumService) { }
 
   ngOnInit(): void {
+    this.forumService.getForum().subscribe(
+      (response: ForumDTO) => {
+        this.forumDTO = response;
+      }, error => {
+        console.error('Error fetching forum', error);
+      }
+    )
   }
-
 }

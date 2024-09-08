@@ -1,3 +1,5 @@
+import { SafeUrl } from "@angular/platform-browser";
+
 export interface PostDTO {
     id: string;
     title: string;
@@ -9,8 +11,10 @@ export interface PostDTO {
     userId: string;
     fileId: string;
     fileType: string;
+    fileUrl: SafeUrl;
+    fileName: string;
     file?: {
-        data: ArrayBuffer;
+        data: string;
         contentType: string;  
         filename: string;  
       }

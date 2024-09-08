@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵ_sanitizeUrl } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { error } from 'console';
 import { FileDTO } from 'src/app/shared/model/fileDTO';
 import { PostDTO } from 'src/app/shared/model/postDTO';
@@ -17,25 +18,53 @@ export class PostListComponent implements OnInit {
   filename: string = '';
   contentType: string = ''
 
-  constructor(private postService: PostService, private sanitizer: DomSanitizer) { }
+
+
+  constructor(private postService: PostService, private sanitizer: DomSanitizer, private router: Router) {}
 
   ngOnInit(): void {
     this.loadPosts();
-    this.loadFile();
+    //this.loadFile();
   }
 
   loadPosts(): void {
-    this.postService.getAllPosts().subscribe(
+    //this.postService.getAllPosts().subscribe(
+    this.postService.getForumPosts().subscribe(
       (data: PostDTO[]) => {
         this.posts = data;
-      }, 
+        this.posts.forEach( post => {
+          if (post.file != undefined) {
+            if (post.file.data != null) {
+              const byteCharacters = atob(post.file?.data);
+              const byteNumbers = new Array(byteCharacters.length)
+      
+              for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+              }
+
+              const byteArray = new Uint8Array(byteNumbers);
+      
+              const blob = new Blob([byteArray], { type: post.file.contentType });
+              
+              const url = URL.createObjectURL(blob);
+              post.fileType = post.file.contentType;
+              post.fileUrl = this.sanitizeUrl(url);
+              post.fileName = post.file.filename;
+            }
+          }
+        })
+      }
+      , 
       error => {
         console.error('Error fetching posts:', error);
       }
     );
   }
+  sanitizeUrl(fileString: string): SafeUrl{
+    return this.sanitizer.bypassSecurityTrustUrl(fileString);
+  }
 
-  loadFile(): void {
+  /*loadFile(): void {
     this.postService.getFile().subscribe(
       (response: FileDTO) => {
         const byteCharacters = atob(response.data);  // Decodifica a string Base64
@@ -58,5 +87,11 @@ export class PostListComponent implements OnInit {
         console.error('Erro ao buscar o arquivo:', error);
       }
     );
-  } 
+  } */
+
+  getPost(postId: string): void{
+    this.postService.setPostId(postId);
+    this.fileUrl = "";
+    this.router.navigate(['/get-post']);
+  }
 }

@@ -10,6 +10,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
+import { PostListComponent } from '../post/post-list/post-list.component';
+import { PostModule } from '../post/post.module';
 
 
 
@@ -23,6 +25,7 @@ import {MatInputModule} from "@angular/material/input";
   exports: [
     ForumCreateComponent,
     ForumListComponent,
+    ForumDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import {MatInputModule} from "@angular/material/input";
     MatIconModule,
     MatButtonModule,
     MatInputModule,
+    PostModule,
   ]
 })
 export class ForumModule { }

@@ -1,1 +1,19 @@
-<p>post-details works!</p>
+<div *ngIf="postDTO != undefined">
+    <h3>{{ postDTO.title }}</h3>
+    <p>{{ postDTO.content }}</p>
+    <div *ngIf="postDTO.fileUrl">
+        <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl" alt="Imagem">
+            
+        <video *ngIf="postDTO.fileType?.startsWith('video/')" [src]="postDTO.fileUrl" controls></video>
+            
+        <audio *ngIf="postDTO.fileType?.startsWith('audio/')" [src]="postDTO.fileUrl" controls></audio>
+            
+        <a *ngIf="!postDTO.fileType?.startsWith('image/') && !postDTO.fileType?.startsWith('video/') && !postDTO.fileType?.startsWith('audio/')"
+            [href]="postDTO.fileUrl" download="{{postDTO.fileName}}">
+            Baixar {{postDTO.fileName}}
+        </a>
+    </div><!---
+    <div>
+        <textarea id="ctt" name="ctt" [(ngModel)]="commentDTO.data" required placeholder="Comment"></textarea>
+    </div>--->
+</div>

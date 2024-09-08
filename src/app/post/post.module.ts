@@ -22,7 +22,8 @@ import {MatInputModule} from "@angular/material/input";
   ],
   exports: [
     PostCreateComponent,
-    PostListComponent
+    PostListComponent,
+    PostDetailsComponent,
   ],
   imports: [
     CommonModule,

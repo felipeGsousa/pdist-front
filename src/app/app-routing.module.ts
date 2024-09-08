@@ -5,6 +5,8 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { PostCreateComponent } from './post/post-create/post-create.component';
 import { ForumListComponent } from './forum/forum-list/forum-list.component';
 import { PostListComponent } from './post/post-list/post-list.component';
+import { PostDetailsComponent } from './post/post-details/post-details.component';
+import { ForumDetailsComponent } from './forum/forum-details/forum-details.component';
 
 const routes: Routes = [
   {
@@ -12,11 +14,11 @@ const routes: Routes = [
     component: UserLoginComponent,
   },
   {
-    path: 'forum',
+    path: 'create-forum',
     component: ForumCreateComponent,
   },
   {
-    path: 'post',
+    path: 'create-post',
     component: PostCreateComponent,
   },
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'posts',
     component: PostListComponent,
+  },
+  {
+    path: 'get-post',
+    component: PostDetailsComponent,
+  },
+  {
+    path: 'get-forum',
+    component: ForumDetailsComponent,
   },
   {
     path: '',

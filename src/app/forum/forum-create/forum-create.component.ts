@@ -37,10 +37,10 @@ export class ForumCreateComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    
+    console.log(file);
     if (file) {
-      if (file.type !== 'image/png') {
-        alert('Por favor, selecione um arquivo PNG.');
+      if (!file.type.startsWith("image/")) {
+        alert('Por favor, selecione uma imagem.');
         return;
       }
     }
