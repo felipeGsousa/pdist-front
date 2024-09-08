@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FileDTO } from 'src/app/shared/model/fileDTO';
 import { ForumService } from 'src/app/shared/service/forum.service';
 import { PostService } from 'src/app/shared/service/post.service';
@@ -29,7 +30,7 @@ export class PostCreateComponent implements OnInit {
   user: any = null;
   loggedIn: boolean = false;
 
-  constructor(private postService: PostService, private userService: UserService, private forumService: ForumService) { }
+  constructor(public dialogRef: MatDialogRef<PostCreateComponent>,private postService: PostService, private userService: UserService, private forumService: ForumService) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
@@ -64,5 +65,9 @@ export class PostCreateComponent implements OnInit {
         console.error('Error creating post:', error);
       });
     }
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

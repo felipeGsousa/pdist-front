@@ -26,7 +26,7 @@ export class UserLoginComponent implements OnInit {
 
       google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
-        { theme: "outline", size: "large" }  
+        { theme: "outline", size: "large" , prompt_parent_id: "buttonDiv" }  
       );
 
       google.accounts.id.prompt(); 
