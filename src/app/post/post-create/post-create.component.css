@@ -1,4 +1,17 @@
 #post-form {
-    width: 700px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
+}
+
+textarea {
+    resize: none;
+}
+
+.file-input {
+    display: none;
+}
+
+.card-form{
+    display: flex;
+    flex-flow: column;
 }

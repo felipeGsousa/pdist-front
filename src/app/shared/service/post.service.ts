@@ -27,7 +27,6 @@ export class PostService {
   }
 
   getForumPosts(): Observable<PostDTO[]> {
-    console.log(localStorage.getItem("forumId"))
     return this.http.get<PostDTO[]>(this.url+`/${localStorage.getItem("forumId")}/forum_posts`);
   }
 

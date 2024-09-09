@@ -49,6 +49,7 @@ export class UserLoginComponent implements OnInit {
         this.user = data;
         this.loggedIn = true;
         this.userService.setUser(this.user, this.loggedIn);
+        //redirect to home
       },
       error => {
         console.error("Authentication error", error);

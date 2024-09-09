@@ -17,6 +17,8 @@ export class ForumCreateComponent implements OnInit {
     userId: ""
   };
 
+  bannerName = "";
+
   topics = ["Educação","Sustentabilidade","Tecnologia",
     "Psicologia","Fotografia","Literatura","Economia",
     "Arquitetura","Música","Medicina",
@@ -47,6 +49,7 @@ export class ForumCreateComponent implements OnInit {
     
     if (file) {
       const reader = new FileReader();
+      this.bannerName = file.name;
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.forumData.banner = (reader.result as string).split(',')[1];

@@ -1,0 +1,13 @@
+#forum-form {
+    width: 600px;
+    height: 600px;
+}
+
+.file-input {
+    display: none;
+}
+
+.card-form{
+    display: flex;
+    flex-flow: column;
+}

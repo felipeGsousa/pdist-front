@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostModule } from './post/post.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ForumModule,
     PostModule,
     MatDialogModule,
+    MatSelectModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule

@@ -1,4 +1,5 @@
 <div class="container" id="post-form">
+    <!---
     <form (ngSubmit)="addPost()" #postForm="ngForm">
         <div class="form-group">
             <label for="title">Title:</label>
@@ -14,6 +15,34 @@
         </div>    
     
         <button type="submit" class="btn btn-default">Criar Post</button>
-    </form>
+    </form>--->
+
+    <mat-card id="post-form">
+        <mat-card-title>New Post</mat-card-title>
+        <form (ngSubmit)="addPost" #postForm="ngForm">
+            <mat-card-content class="card-form">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Title:</mat-label>
+                    <input matInput id="title" rows="1" [(ngModel)]="postData.title" required placeholder="Insert a title">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Content</mat-label>
+                    <textarea style="overflow:auto;resize:none" rows="13" cols="80" matInput id="content" [(ngModel)]="postData.content" required></textarea>
+                </mat-form-field>
+
+                <div class="form-group">
+                    <input class="file-input" type="file" (change)="onFileSelected($event)" #fileUpload>
+                    <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                      <mat-icon>attach_file</mat-icon>
+                    </button>
+                    <label>{{file.filename}}</label>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit">Create</button>
+            </mat-card-actions>
+
+        </form>
+    </mat-card>
 </div>
     

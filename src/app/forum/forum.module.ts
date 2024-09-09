@@ -12,6 +12,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import { PostListComponent } from '../post/post-list/post-list.component';
 import { PostModule } from '../post/post.module';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -31,6 +32,7 @@ import { PostModule } from '../post/post.module';
     CommonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatSelectModule,
     FormsModule,
     MatIconModule,
     MatButtonModule,

@@ -14,7 +14,10 @@ export class PostDetailsComponent implements OnInit {
 
   postId: string = "";
   postDTO: PostDTO | undefined;
-  commentDTO: CommentDTO | undefined;
+  comment = {
+    userId: "",
+    data: ""
+  };
 
   constructor(private postService: PostService, private sanitizer: DomSanitizer) { }
 

@@ -62,6 +62,7 @@ export class PostCreateComponent implements OnInit {
     if (forumId != null){
       this.postService.addPost(forumId, this.postData).subscribe(response => {
         console.log('Post created successfully:', response);
+        this.closeDialog;
         this.postService.setPostId(response);
         this.router.navigate(['/get-post']);
       }, error => {
