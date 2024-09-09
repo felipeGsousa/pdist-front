@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { FileDTO } from 'src/app/shared/model/fileDTO';
 import { ForumService } from 'src/app/shared/service/forum.service';
 import { PostService } from 'src/app/shared/service/post.service';
@@ -30,7 +31,7 @@ export class PostCreateComponent implements OnInit {
   user: any = null;
   loggedIn: boolean = false;
 
-  constructor(public dialogRef: MatDialogRef<PostCreateComponent>,private postService: PostService, private userService: UserService, private forumService: ForumService) { }
+  constructor(private router: Router, public dialogRef: MatDialogRef<PostCreateComponent>,private postService: PostService, private userService: UserService, private forumService: ForumService) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
@@ -61,6 +62,8 @@ export class PostCreateComponent implements OnInit {
     if (forumId != null){
       this.postService.addPost(forumId, this.postData).subscribe(response => {
         console.log('Post created successfully:', response);
+        this.postService.setPostId(response);
+        this.router.navigate(['/get-post']);
       }, error => {
         console.error('Error creating post:', error);
       });

@@ -29,7 +29,7 @@ export class ForumDetailsComponent implements OnInit {
 
   createPost(): void {
     const dialogRef = this.dialog.open(PostCreateComponent, {
-      width: '400px', 
+      width: '800px',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('O diálogo foi fechado');
