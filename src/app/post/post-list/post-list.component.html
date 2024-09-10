@@ -1,12 +1,41 @@
 <div *ngIf="posts.length > 0; else noPosts">
-    <div *ngFor="let post of posts" class="post-item" (click) = "getPost(post.id)">
+    <div *ngFor="let post of posts" class="post-item">
+      <mat-card class="post-card">
+        <mat-card-title>
+          <h2>
+            {{ post.content }}
+          </h2>
+        </mat-card-title>
+        <mat-card-content class="post-card_content">
+          {{ post.content }}
+        </mat-card-content>
+        <div *ngIf="post.fileUrl">
+          <mat-card-content class="file-container">
+            <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
+      
+            <video #videoPlayer *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
+      
+            <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
+
+            <a *ngIf="!post.fileType?.startsWith('image/') && !post.fileType?.startsWith('video/') && !post.fileType?.startsWith('audio/')" [href]="post.fileUrl" download="{{post.fileName}}">
+                Baixar {{post.fileName}}
+            </a>
+          </mat-card-content>
+        </div>
+        <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
+          <mat-icon>chat_bubble_outline</mat-icon>
+        </button>
+      </mat-card>
+      <br>
+
+      <!---
       <h3>{{ post.title }}</h3>
       <p>{{ post.content }}</p>
       <div *ngIf="post.fileUrl">
 
         <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
       
-        <video *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
+        <video #videoPlayer *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
       
         <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
       
@@ -14,8 +43,12 @@
            [href]="post.fileUrl" download="{{post.fileName}}">
           Baixar {{post.fileName}}
         </a>
-        
       </div>
+      <div>
+        <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
+          <mat-icon>chat_bubble_outline</mat-icon>
+        </button>
+      </div>--->
     </div>
 </div>
 

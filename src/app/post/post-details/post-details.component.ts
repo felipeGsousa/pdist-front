@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { CommentDTO } from 'src/app/shared/model/commentDTO';
 import { PostDTO } from 'src/app/shared/model/postDTO';
 import { PostService } from 'src/app/shared/service/post.service';
@@ -18,11 +19,14 @@ export class PostDetailsComponent implements OnInit {
     userId: "",
     data: ""
   };
+  private routeSub: Subscription | undefined;
 
-  constructor(private postService: PostService, private sanitizer: DomSanitizer) { }
+  constructor(private route:ActivatedRoute, private postService: PostService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.postService.getPostId();
+    this.routeSub = this.route.params.subscribe(params => {
+      this.postService.setPostId(params['id']);
+    })
     this.postService.getPost().subscribe(
       (response: PostDTO) => {
         this.postDTO = response;

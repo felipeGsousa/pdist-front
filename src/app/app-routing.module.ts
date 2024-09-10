@@ -30,11 +30,11 @@ const routes: Routes = [
     component: PostListComponent,
   },
   {
-    path: 'get-post',
+    path: 'get-post/:id',
     component: PostDetailsComponent,
   },
   {
-    path: 'get-forum',
+    path: 'get-forum/:id',
     component: ForumDetailsComponent,
   },
   {

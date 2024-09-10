@@ -29,8 +29,8 @@ export class ForumListComponent implements OnInit {
     );
   }
 
-  getForum(postId: string): void{
-    this.forumService.setForumId(postId);
-    this.router.navigate(['/get-forum']);
+  getForum(forumId: string): void{
+    this.forumService.setForumId(forumId);
+    this.router.navigate(['/get-forum/'+ forumId]);
   }
 }

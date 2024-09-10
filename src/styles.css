@@ -2,4 +2,51 @@
 
 html {background: rgb(57, 57, 57);}
 html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+body { margin: 0; 
+    font-family: Roboto, 
+    "Helvetica Neue", sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.post-card_content {
+    width: 700px;
+}
+
+.post-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0.5rem;
+    width: 700px;
+}
+
+.file-container {
+    width: 700px;
+    height: 400px;
+    margin-bottom: 0.5rem;
+}
+
+.file-container img, video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.comment-session {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 700px;
+    margin: 0.5rem;
+}
+.forum-item {
+    width: 700px;
+    height: 100px;
+    margin: 0.5rem;
+}
+
+#comment {
+    height: 100px;
+    overflow:auto; 
+    resize:none; 
+}

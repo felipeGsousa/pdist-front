@@ -1,8 +1,37 @@
 <div *ngIf="postDTO != undefined">
+    <mat-card class="post-card">
+        <mat-card-title>{{ postDTO.title }}</mat-card-title>
+        <mat-card-content>
+            <h2>
+            {{ postDTO.content }}
+            </h2>
+        </mat-card-content>
+        <div *ngIf="postDTO.fileUrl">
+            <mat-card-content class="file-container">
+              <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl" alt="Imagem">
+        
+              <video #videoPlayer *ngIf="postDTO.fileType?.startsWith('video/')" [src]="postDTO.fileUrl" controls></video>
+        
+              <audio *ngIf="postDTO.fileType?.startsWith('audio/')" [src]="postDTO.fileUrl" controls></audio>
+  
+              <a *ngIf="!postDTO.fileType?.startsWith('image/') && !postDTO.fileType?.startsWith('video/') && !postDTO.fileType?.startsWith('audio/')" [href]="postDTO.fileUrl" download="{{postDTO.fileName}}">
+                  Baixar {{postDTO.fileName}}
+              </a>
+            </mat-card-content>
+          </div>
+    </mat-card>
+    <mat-card class="comment-session">
+        <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
+            <mat-label>Comments</mat-label>
+            <textarea id="comment" matInput [(ngModel)]="comment.data" placeholder="Comment"></textarea>
+        </mat-form-field>
+    </mat-card>
+
+    <!---
     <h3>{{ postDTO.title }}</h3>
     <p>{{ postDTO.content }}</p>
     <div *ngIf="postDTO.fileUrl">
-        <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl" alt="Imagem">
+        <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl"  alt="Imagem">
             
         <video *ngIf="postDTO.fileType?.startsWith('video/')" [src]="postDTO.fileUrl" controls></video>
             
@@ -15,5 +44,5 @@
     </div>
     <div>
         <textarea id="ctt" name="ctt" [(ngModel)]="comment.data" required placeholder="Comment"></textarea>
-    </div>
+    </div>--->
 </div>

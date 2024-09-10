@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵ_sanitizeUrl } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ɵ_sanitizeUrl } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { error } from 'console';
@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit {
   fileUrl: SafeUrl | undefined;
   filename: string = '';
   contentType: string = ''
+  @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
 
 
 
@@ -91,7 +92,16 @@ export class PostListComponent implements OnInit {
 
   getPost(postId: string): void{
     this.postService.setPostId(postId);
-    this.fileUrl = "";
-    this.router.navigate(['/get-post']);
+    this.pauseAllVideos;
+    this.router.navigate(['/get-post/'+ postId]);
+  }
+
+  private pauseAllVideos() {
+    this.videoPlayers.forEach(videoPlayer => {
+      const video: HTMLVideoElement = videoPlayer.nativeElement;
+      if (!video.paused) {
+        video.pause();
+      }
+    });
   }
 }
