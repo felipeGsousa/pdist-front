@@ -23,11 +23,11 @@
             <mat-card-content class="card-form">
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Title:</mat-label>
-                    <input matInput id="title" rows="1" [(ngModel)]="postData.title" placeholder="Insert a title" required >
+                    <input matInput id="title" name="title" rows="1" [(ngModel)]="postData.title" placeholder="Insert a title" required >
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Content</mat-label>
-                    <textarea style="overflow:auto;resize:none" rows="13" cols="80" matInput id="content" [(ngModel)]="postData.content" required></textarea>
+                    <textarea id="content" name="content" style="overflow:auto;resize:none" rows="13" cols="80" matInput id="content" [(ngModel)]="postData.content" required></textarea>
                 </mat-form-field>
 
                 <div class="form-group">

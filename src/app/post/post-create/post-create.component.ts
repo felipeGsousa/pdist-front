@@ -31,6 +31,8 @@ export class PostCreateComponent implements OnInit {
   user: any = null;
   loggedIn: boolean = false;
 
+  maxFileSize: number = 2 * 1024 * 1024;
+
   constructor(private router: Router, public dialogRef: MatDialogRef<PostCreateComponent>,private postService: PostService, private userService: UserService, private forumService: ForumService) { }
 
   ngOnInit(): void {
@@ -42,6 +44,10 @@ export class PostCreateComponent implements OnInit {
   onFileSelected(event: any){
     const file: File = event.target.files[0];
     if (file) {
+      if (file.size > this.maxFileSize) {
+        alert('O arquivo excede o limite de 2MB.');
+        return;
+      }
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -57,14 +63,13 @@ export class PostCreateComponent implements OnInit {
 
   addPost() {
     let forumId = localStorage.getItem('forumId');
-    this.postData.userId = this.user.id;
+    this.postData.userId = "this.user.id";
     if (forumId != null){
-      console.log(forumId)
       this.postService.addPost(forumId, this.postData).subscribe(response => {
         console.log('Post created successfully:', response);
-        this.closeDialog;
         this.postService.setPostId(response);
         this.router.navigate(['/get-post/'+response]);
+        this.closeDialog(); 
       }, error => {
         console.error('Error creating post:', error);
       });
