@@ -56,15 +56,15 @@ export class PostCreateComponent implements OnInit {
   }
 
   addPost() {
-    console.log(localStorage.getItem('forumId'));
     let forumId = localStorage.getItem('forumId');
     this.postData.userId = this.user.id;
     if (forumId != null){
+      console.log(forumId)
       this.postService.addPost(forumId, this.postData).subscribe(response => {
         console.log('Post created successfully:', response);
         this.closeDialog;
         this.postService.setPostId(response);
-        this.router.navigate(['/get-post']);
+        this.router.navigate(['/get-post/'+response]);
       }, error => {
         console.error('Error creating post:', error);
       });
