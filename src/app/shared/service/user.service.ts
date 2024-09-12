@@ -8,8 +8,13 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private authUrl = "https://pdist-user-service.onrender.com/api/auth/google";
+  private userUrl = "https://pdist-user-service.onrender.com/api/user/";
   user: any = null;
   loggedIn: boolean = false;
+  like = {
+    id: "",
+    type: "",
+  };
 
   constructor(private http: HttpClient) {
     const storedUser = localStorage.getItem('user');
@@ -27,12 +32,19 @@ export class UserService {
   }
 
   setUser(user: any, loggedIn: boolean) {
-    console.log(user)
     this.user = user;
     this.loggedIn = loggedIn;
+    console.log(this.user.likedPosts.length > 0);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('loggedIn', 'true'); 
   }
+
+  likePost(postId:string){
+    if (this.user.likedPosts.length > 0) {}
+    return this.http.post(this.authUrl + `post/${postId}`, this.like);
+  }
+
+  likeComment(){}
 
   getUserId() {
     return this.user.id
