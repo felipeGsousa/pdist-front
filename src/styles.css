@@ -46,7 +46,31 @@ body { margin: 0;
 }
 
 #comment {
-    height: 100px;
+    height: 60px;
     overflow:auto; 
     resize:none; 
+}
+
+.comment-card {
+    margin-bottom: 0.5rem;
+}
+
+.reply-session {
+    border-radius: 5px;
+    padding: .5rem;
+    background-color: rgb(71, 71, 71);
+}
+
+.reply-card {
+    margin-bottom: .5rem;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-card {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }

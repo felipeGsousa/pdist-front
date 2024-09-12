@@ -33,6 +33,11 @@ export class UserService {
     localStorage.setItem('loggedIn', 'true'); 
   }
 
+  getUserId() {
+    return this.user.id
+    //return "66df940bd5efe7577f1c5c15"
+  }
+
   getUser() {
     return this.user;
   }

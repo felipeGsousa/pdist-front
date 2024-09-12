@@ -1,4 +1,5 @@
 import { SafeUrl } from "@angular/platform-browser";
+import { CommentDTO } from "./commentDTO";
 
 export interface PostDTO {
     id: string;
@@ -13,6 +14,7 @@ export interface PostDTO {
     fileType: string;
     fileUrl: SafeUrl;
     fileName: string;
+    comments: CommentDTO[];
     file?: {
         data: string;
         contentType: string;  

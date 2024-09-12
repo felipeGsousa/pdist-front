@@ -7,6 +7,7 @@ import { ForumListComponent } from './forum/forum-list/forum-list.component';
 import { PostListComponent } from './post/post-list/post-list.component';
 import { PostDetailsComponent } from './post/post-details/post-details.component';
 import { ForumDetailsComponent } from './forum/forum-details/forum-details.component';
+import { HomeComponent } from './layout/home/home.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'get-forum/:id',
     component: ForumDetailsComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
   },
   {
     path: '',

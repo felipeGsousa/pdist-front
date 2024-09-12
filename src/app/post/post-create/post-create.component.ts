@@ -31,7 +31,7 @@ export class PostCreateComponent implements OnInit {
   user: any = null;
   loggedIn: boolean = false;
 
-  maxFileSize: number = 2 * 1024 * 1024;
+  maxFileSize: number = 1 * 1024 * 1024;
 
   constructor(private router: Router, public dialogRef: MatDialogRef<PostCreateComponent>,private postService: PostService, private userService: UserService, private forumService: ForumService) { }
 
@@ -45,7 +45,7 @@ export class PostCreateComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       if (file.size > this.maxFileSize) {
-        alert('O arquivo excede o limite de 2MB.');
+        alert('O arquivo excede o limite de 1MB.');
         return;
       }
       const reader = new FileReader();
@@ -63,7 +63,7 @@ export class PostCreateComponent implements OnInit {
 
   addPost() {
     let forumId = localStorage.getItem('forumId');
-    this.postData.userId = "this.user.id";
+    this.postData.userId = this.userService.getUserId();
     if (forumId != null){
       this.postService.addPost(forumId, this.postData).subscribe(response => {
         console.log('Post created successfully:', response);

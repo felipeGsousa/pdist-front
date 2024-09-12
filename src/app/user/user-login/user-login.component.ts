@@ -1,6 +1,7 @@
 declare var google: any;
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { error } from 'console';
 import { UserService } from 'src/app/shared/service/user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/shared/service/user.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   user: any = null;
   loggedIn: boolean = false;
@@ -50,7 +51,7 @@ export class UserLoginComponent implements OnInit {
         this.loggedIn = true;
         this.userService.setUser(this.user, this.loggedIn);
         console.log(data);
-        //redirect to home
+        this.router.navigate(['/home']);
       },
       error => {
         console.error("Authentication error", error);

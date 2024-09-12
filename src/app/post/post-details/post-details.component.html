@@ -18,13 +18,53 @@
                   Baixar {{postDTO.fileName}}
               </a>
             </mat-card-content>
-          </div>
+        </div>
+        <div class="action-buttons">
+            <mat-card-content>
+              <button type="button" mat-mini-fab color="secondary">
+                <mat-icon>thumb_up</mat-icon>
+              </button>{{postDTO.likes}}
+              <button type="button" mat-mini-fab color="secondary">
+                <mat-icon>thumb_down</mat-icon>
+              </button>{{postDTO.dislikes}}
+            </mat-card-content>
+        </div>
     </mat-card>
     <mat-card class="comment-session">
+        <mat-card-title>Comments: </mat-card-title>
         <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
             <mat-label>Comments</mat-label>
-            <textarea id="comment" matInput [(ngModel)]="comment.data" placeholder="Comment"></textarea>
+            <textarea (keydown)="addComment($event)" id="comment" matInput [(ngModel)]="commentDTO.data" placeholder="Comment"></textarea>
         </mat-form-field>
+        <div *ngIf="postDTO.comments.length > 0">
+            <div *ngFor="let comment of postDTO.comments; let i = index">
+                <mat-card class="comment-card">
+                    <mat-card-content>
+                        <p>{{comment.data}}</p>
+                    </mat-card-content>
+                    <button mat-button (click)="toggleReplySession(i)">
+                        {{ replyComment[i] ? 'Cancel' : 'Reply' }}
+                    </button>
+                    <div *ngIf="replyComment[i]">
+                        <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
+                            <textarea (keydown)="addCommentTo($event, comment.id)" id="comment" matInput [(ngModel)]="commentDTOto.data" placeholder="Comment"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <button *ngIf="comment.comments.length > 0" mat-button (click)="toggleReplies(i)">
+                        {{ showReplies[i] ? 'Hide replies' : 'Show replies' }}
+                    </button>
+                    <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
+                        <div *ngFor="let comment2 of comment.comments">
+                            <mat-card class="reply-card">
+                                <mat-card-content>
+                                    <p>{{comment2.data}}</p>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
     </mat-card>
 
     <!---

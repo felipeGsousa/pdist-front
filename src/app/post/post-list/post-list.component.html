@@ -9,6 +9,7 @@
         <mat-card-content class="post-card_content">
           {{ post.content }}
         </mat-card-content>
+        <mat-card-content></mat-card-content>
         <div *ngIf="post.fileUrl">
           <mat-card-content class="file-container">
             <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
@@ -22,9 +23,19 @@
             </a>
           </mat-card-content>
         </div>
-        <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
-          <mat-icon>chat_bubble_outline</mat-icon>
-        </button>
+        <div class="action-buttons">
+          <mat-card-content>
+            <button type="button" mat-mini-fab color="secondary"  (click) = "getPost(post.id)">
+              <mat-icon>thumb_up</mat-icon>
+            </button>{{post.likes}}
+            <button type="button" mat-mini-fab color="secondary"  (click) = "getPost(post.id)">
+              <mat-icon>thumb_down</mat-icon>
+            </button>{{post.dislikes}}
+          </mat-card-content>
+          <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
+            <mat-icon>chat_bubble_outline</mat-icon>
+          </button>
+        </div>
       </mat-card>
       <br>
 

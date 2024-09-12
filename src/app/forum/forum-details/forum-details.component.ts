@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { error } from 'console';
 import { Subscription } from 'rxjs';
@@ -16,9 +17,10 @@ export class ForumDetailsComponent implements OnInit {
 
   forumId: string = "";
   forumDTO: ForumDTO | undefined;
+  forumBanner: SafeUrl | undefined;
   private routeSub: Subscription | undefined;
 
-  constructor(private forumService: ForumService, public dialog: MatDialog, private route:ActivatedRoute) { }
+  constructor(private forumService: ForumService, private sanitizer: DomSanitizer, public dialog: MatDialog, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
@@ -27,6 +29,21 @@ export class ForumDetailsComponent implements OnInit {
     this.forumService.getForum().subscribe(
       (response: ForumDTO) => {
         this.forumDTO = response;
+        if (response.banner != null) {
+          const byteCharacters = atob(response.banner);
+          const byteNumbers = new Array(byteCharacters.length)
+        
+          for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+          }
+
+          const byteArray = new Uint8Array(byteNumbers);
+        
+          const blob = new Blob([byteArray], { type: "image/png" });
+      
+          const url = URL.createObjectURL(blob);
+          this.forumBanner = this.sanitizeUrl(url);
+        }
       }, error => {
         console.error('Error fetching forum', error);
       }
@@ -41,5 +58,9 @@ export class ForumDetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
+  }
+
+  sanitizeUrl(fileString: string): SafeUrl{
+    return this.sanitizer.bypassSecurityTrustUrl(fileString);
   }
 }

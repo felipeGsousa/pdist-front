@@ -6,6 +6,6 @@ export interface CommentDTO {
     userPhoto: string;
     userId: string;
     data: string;
-    comments: [];
+    comments: CommentDTO[];
     date: Date; 
 }

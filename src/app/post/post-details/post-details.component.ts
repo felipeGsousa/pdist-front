@@ -4,7 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { CommentDTO } from 'src/app/shared/model/commentDTO';
 import { PostDTO } from 'src/app/shared/model/postDTO';
+import { CommentService } from 'src/app/shared/service/comment.service';
 import { PostService } from 'src/app/shared/service/post.service';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
   selector: 'app-post-details',
@@ -15,15 +17,26 @@ export class PostDetailsComponent implements OnInit {
 
   postId: string = "";
   postDTO: PostDTO | undefined;
-  comment = {
+  commentDTO = {
+    userId: "",
+    data: ""
+  };
+  commentDTOto = {
     userId: "",
     data: ""
   };
   private routeSub: Subscription | undefined;
+  private user: any;
+  private loggedIn: boolean = false;
 
-  constructor(private route:ActivatedRoute, private postService: PostService, private sanitizer: DomSanitizer) { }
+  public showReplies: { [key: number]: boolean } = {};
+  public replyComment: { [key: number]: boolean } = {};
+
+  constructor(private route:ActivatedRoute, private userService: UserService,private postService: PostService, private sanitizer: DomSanitizer, private commentService:CommentService) { }
 
   ngOnInit(): void {
+    this.user = this.userService.getUser();
+    this.loggedIn = this.userService.isLoggedIn();
     this.routeSub = this.route.params.subscribe(params => {
       this.postService.setPostId(params['id']);
     })
@@ -58,4 +71,44 @@ export class PostDetailsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(fileString);
   }
 
+  addComment(event:any){
+    if (event.keyCode === 13) {
+      if (this.commentDTO.data.trim() === ""){
+        alert("Empty comment");
+        return;
+      } 
+      this.commentDTO.userId = this.userService.getUserId();
+      this.commentService.addComment(this.postService.getPostId(), this.commentDTO).subscribe(response => {
+        console.log('Comment creating succesfully:', response);
+        window.location.reload();
+      },error => {
+        console.error('Error creating forum:', error);
+      });  
+    }
+  }
+
+  addCommentTo(event:any, commentId:string){
+    if (event.keyCode === 13) {
+      console.log(this.commentDTOto)
+      if (this.commentDTOto.data.trim() === ""){
+        alert("Empty comment");
+        return;
+      } 
+      this.commentDTOto.userId = 'this.user.id';
+      this.commentService.addCommentTo(commentId, this.commentDTOto).subscribe(response => {
+        console.log('Comment creating succesfully:', response);
+        window.location.reload();
+      },error => {
+        console.error('Error creating forum:', error);
+      });  
+    }
+  }
+
+  toggleReplySession(index: number): void {
+    this.replyComment[index] = !this.replyComment[index];
+  }
+
+  toggleReplies(index: number): void {
+    this.showReplies[index] = !this.showReplies[index];
+  }
 }

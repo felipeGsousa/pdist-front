@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostModule } from './post/post.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { LayoutModule } from './layout/layout.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserModule,
     UserModule,
     ForumModule,
+    LayoutModule,
     PostModule,
     MatDialogModule,
     MatSelectModule,

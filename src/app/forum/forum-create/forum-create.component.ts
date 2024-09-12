@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ForumService } from 'src/app/shared/service/forum.service';
 import { UserService } from 'src/app/shared/service/user.service';
 
@@ -30,7 +32,7 @@ export class ForumCreateComponent implements OnInit {
   user: any = null;
   loggedIn: boolean = false;
 
-  constructor(private forumService: ForumService, private userService:UserService) { }
+  constructor(private router: Router, public dialogRef: MatDialogRef<ForumCreateComponent>, private forumService: ForumService, private userService:UserService) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
@@ -61,11 +63,18 @@ export class ForumCreateComponent implements OnInit {
   }
 
   addForum() {
-    this.forumData.userId = this.user.id;
+    this.forumData.userId = this.userService.getUserId();
     this.forumService.addForum(this.forumData).subscribe(response => {
       console.log('Forum creating succesfully:', response);
+      this.forumService.setForumId(response.id);
+      this.router.navigate(['/get-forum/'+response.id]);
+      this.closeDialog(); 
     }, error => {
       console.error('Error creating forum:', error);
     });
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }
