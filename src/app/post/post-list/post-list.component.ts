@@ -98,9 +98,9 @@ export class PostListComponent implements OnInit {
     this.router.navigate(['/get-post/'+ postId]);
   }
 
-  likePost(postId: string): void{
+  likePost(postId: string, type:string): void{
     if (this.loggedIn) {
-      console.log(this.userService.getUser())
+      this.userService.likePost(postId, type);
     }
   }
 

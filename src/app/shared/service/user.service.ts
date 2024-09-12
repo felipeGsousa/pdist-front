@@ -12,8 +12,7 @@ export class UserService {
   user: any = null;
   loggedIn: boolean = false;
   like = {
-    id: "",
-    type: "",
+    "": "",
   };
 
   constructor(private http: HttpClient) {
@@ -34,13 +33,22 @@ export class UserService {
   setUser(user: any, loggedIn: boolean) {
     this.user = user;
     this.loggedIn = loggedIn;
-    console.log(this.user.likedPosts.length > 0);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('loggedIn', 'true'); 
   }
 
-  likePost(postId:string){
-    if (this.user.likedPosts.length > 0) {}
+  likePost(postId:string, type:string){
+    if (this.user.likedPosts.length > 0) {
+      let exists = this.user.likedPosts.find((val: any) => val[0] === postId);
+      if (exists) {
+        if (exists[1]===type) {
+          this.user.likedPosts.removeItem(exists);
+        } else {
+          this.user.likedPosts.removeItem(exists);
+          this.user.likedPosts.insert({postId, type});
+        }
+      }
+    }
     return this.http.post(this.authUrl + `post/${postId}`, this.like);
   }
 
