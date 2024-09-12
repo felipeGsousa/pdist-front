@@ -49,7 +49,7 @@ export class UserService {
         }
       }
     }
-    return this.http.post(this.authUrl + `post/${postId}`, this.like);
+    return this.http.post(this.authUrl + `post/${this.getUserId}`, {postId, type});
   }
 
   likeComment(){}
