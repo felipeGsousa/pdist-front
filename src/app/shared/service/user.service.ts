@@ -12,7 +12,8 @@ export class UserService {
   user: any = null;
   loggedIn: boolean = false;
   like = {
-    "": "",
+    id: "",
+    type: ""
   };
 
   constructor(private http: HttpClient) {
@@ -49,7 +50,9 @@ export class UserService {
         }
       }
     }
-    return this.http.post(this.userUrl + `post/${this.getUserId()}`, {postId, type});
+    this.like.id = postId;
+    this.like.type = type;
+    return this.http.post(this.userUrl + `post/${this.getUserId()}`, this.like);
   }
 
   likeComment(){}
