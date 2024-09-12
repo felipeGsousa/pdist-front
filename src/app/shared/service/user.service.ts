@@ -53,7 +53,7 @@ export class UserService {
     this.like.id = postId;
     this.like.type = type;
     console.log(this.like)
-    return this.http.post(this.userUrl + `post/${this.getUserId()}`, this.like);
+    return this.http.post(this.userUrl + "post/" + `${this.getUserId()}`, this.like);
   }
 
   likeComment(){}
