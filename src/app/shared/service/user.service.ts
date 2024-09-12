@@ -27,6 +27,7 @@ export class UserService {
   }
 
   setUser(user: any, loggedIn: boolean) {
+    console.log(user)
     this.user = user;
     this.loggedIn = loggedIn;
     localStorage.setItem('user', JSON.stringify(user));
