@@ -5,6 +5,7 @@ import { error } from 'console';
 import { FileDTO } from 'src/app/shared/model/fileDTO';
 import { PostDTO } from 'src/app/shared/model/postDTO';
 import { PostService } from 'src/app/shared/service/post.service';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
   selector: 'app-post-list',
@@ -18,12 +19,13 @@ export class PostListComponent implements OnInit {
   filename: string = '';
   contentType: string = ''
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
+  loggedIn:boolean = false;
 
 
-
-  constructor(private postService: PostService, private sanitizer: DomSanitizer, private router: Router) {}
+  constructor(private userService:UserService, private postService: PostService, private sanitizer: DomSanitizer, private router: Router) {}
 
   ngOnInit(): void {
+    this.loggedIn = this.userService.isLoggedIn();
     this.loadPosts();
     //this.loadFile();
   }
@@ -92,8 +94,14 @@ export class PostListComponent implements OnInit {
 
   getPost(postId: string): void{
     this.postService.setPostId(postId);
-    this.pauseAllVideos;
+    //this.pauseAllVideos;
     this.router.navigate(['/get-post/'+ postId]);
+  }
+
+  likePost(postId: string): void{
+    if (this.loggedIn) {
+      console.log(this.userService.getUser())
+    }
   }
 
   private pauseAllVideos() {

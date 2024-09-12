@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { PostCreateComponent } from 'src/app/post/post-create/post-create.component';
 import { ForumDTO } from 'src/app/shared/model/forumDTO';
 import { ForumService } from 'src/app/shared/service/forum.service';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
   selector: 'app-forum-details',
@@ -19,10 +20,12 @@ export class ForumDetailsComponent implements OnInit {
   forumDTO: ForumDTO | undefined;
   forumBanner: SafeUrl | undefined;
   private routeSub: Subscription | undefined;
+  loggedIn:boolean = false;
 
-  constructor(private forumService: ForumService, private sanitizer: DomSanitizer, public dialog: MatDialog, private route:ActivatedRoute) { }
+  constructor(private userService:UserService, private forumService: ForumService, private sanitizer: DomSanitizer, public dialog: MatDialog, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.loggedIn = this.userService.isLoggedIn();
     this.routeSub = this.route.params.subscribe(params => {
       this.forumService.setForumId(params['id']);
     })
