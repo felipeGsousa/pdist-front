@@ -100,7 +100,12 @@ export class PostListComponent implements OnInit {
 
   likePost(postId: string, type:string): void{
     if (this.loggedIn) {
-      this.userService.likePost(postId, type);
+      this.userService.likePost(postId, type).subscribe(
+        (response: any) => {
+          console.log(response);
+        }, error => {
+          console.error('Error: ', error);
+        });
     }
   }
 
