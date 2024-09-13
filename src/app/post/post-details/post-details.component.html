@@ -6,7 +6,7 @@
                     <h1>{{ postDTO.title }}</h1>
                 </mat-card-title>
                 <mat-card-content>
-                    <div class="mat-elevation-z3">
+                    <div class="user-profile mat-elevation-z3">
                         <img *ngIf="postDTO.userPhoto != null" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
                         <div class="user-info">
                         <h3 *ngIf="postDTO.userName != null" class="user-name">{{ postDTO.userName }}</h3>
@@ -53,21 +53,19 @@
         <div *ngIf="postDTO.comments.length > 0">
             <div *ngFor="let comment of postDTO.comments; let i = index">
                 <mat-card class="comment-card">
-                    <mat-card>
-                        <div  class="display-flex">
-                            <mat-card-content>
-                                <div class=" mat-elevation-z3">
-                                    <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
-                                    <div class="user-info">
-                                    <h3 *ngIf="comment.userName != null" class="user-name">{{ comment.userName }}</h3>
-                                    </div>
-                                </div>
-                            </mat-card-content>
+                    <div  class="display-flex">
+                        <mat-card-content>
+                            <p>{{comment.data}}</p>
+                        </mat-card-content>
+                        <div class="user-profile mat-elevation-z3">
+                                <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
+                            <div class="user-info">
+                                <h3 *ngIf="comment.userName != null" class="user-name">{{ comment.userName }}</h3>
+                            </div>
                         </div>
-                    </mat-card>
-                    <mat-card-content>
-                        <p>{{comment.data}}</p>
-                    </mat-card-content>
+                    </div>
+                    
+                    
                     <div class="action-buttons">
                         <mat-card-content>
                             <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment, comment.id, 'like')">
@@ -92,21 +90,17 @@
                     <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
                         <div *ngFor="let comment2 of comment.comments">
                             <mat-card class="reply-card">
-                                <mat-card>
-                                    <div  class="display-flex">
-                                        <mat-card-content>
-                                            <div class="mat-elevation-z3">
-                                                <img *ngIf="comment2.userPhoto != null" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
-                                                <div class="user-info">
-                                                <h3 *ngIf="comment2.userName != null" class="user-name">{{ comment2.userName }}</h3>
-                                                </div>
-                                            </div>
-                                        </mat-card-content>
-                                    </div>
-                                </mat-card>
                                 <mat-card-content>
                                     <p>{{comment2.data}}</p>
                                 </mat-card-content>
+                                <div  class="display-flex">
+                                    <div class="user-profile mat-elevation-z3">
+                                        <img *ngIf="comment2.userPhoto!= null" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
+                                        <div class="user-info">
+                                            <h3 *ngIf="comment2.userName != null" class="user-name">{{ comment2.userName }}</h3>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="action-buttons">
                                     <mat-card-content>
                                         <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2, comment2.id, 'like')">
