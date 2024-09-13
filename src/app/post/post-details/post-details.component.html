@@ -57,8 +57,8 @@
                         <mat-card-content>
                             <p>{{comment.data}}</p>
                         </mat-card-content>
-                        <div class="user-profile mat-elevation-z3">
-                                <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
+                        <div>
+                            <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
                             <div class="user-info">
                                 <h3 *ngIf="comment.userName != null" class="user-name">{{ comment.userName }}</h3>
                             </div>
@@ -94,7 +94,7 @@
                                     <p>{{comment2.data}}</p>
                                 </mat-card-content>
                                 <div  class="display-flex">
-                                    <div class="user-profile mat-elevation-z3">
+                                    <div >
                                         <img *ngIf="comment2.userPhoto!= null" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
                                         <div class="user-info">
                                             <h3 *ngIf="comment2.userName != null" class="user-name">{{ comment2.userName }}</h3>
