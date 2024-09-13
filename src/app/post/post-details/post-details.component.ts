@@ -67,12 +67,11 @@ export class PostDetailsComponent implements OnInit {
            
             if (this.loggedIn) {
               let exists = this.user.likedPosts[response.id];
-              console.log(exists);
-              if (exists) {
+              if (exists != undefined) {
                 if (exists === "like") {
                   this.postDTO.likeButtonColor = "primary";
                   this.postDTO.dislikeButtonColor = "secondary";
-                } else {
+                } else if(exists === "dislike"){
                   this.postDTO.likeButtonColor = "secondary";
                   this.postDTO.dislikeButtonColor = "primary";
                 }
@@ -157,12 +156,11 @@ export class PostDetailsComponent implements OnInit {
     comment.dislikeButtonColor = "secondary"
     if (this.loggedIn) {
       let exists = this.user.likedComments[comment.id];
-      console.log(exists);
-      if (exists) {
+      if (exists != undefined) {
         if (exists === "like") {
           comment.likeButtonColor = "primary";
           comment.dislikeButtonColor = "secondary";
-        } else {
+        } else if (exists === "dislike"){
           comment.likeButtonColor = "secondary";
           comment.dislikeButtonColor = "primary";
         }

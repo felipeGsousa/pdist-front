@@ -129,6 +129,21 @@ export class PostListComponent implements OnInit {
     }
   }
 
+  likeButtonColor(post: any) {
+    if (this.loggedIn) {
+      let exists = this.user.likedPosts[post.id];
+      if (exists != undefined) {
+        if (exists === "like") {
+          post.likeButtonColor = "primary";
+          post.dislikeButtonColor = "secondary";
+        } else if(exists === "dislike"){
+          post.likeButtonColor = "secondary";
+          post.dislikeButtonColor = "primary";
+        }
+      }
+    }
+  } 
+
   private pauseAllVideos() {
     this.videoPlayers.forEach(videoPlayer => {
       const video: HTMLVideoElement = videoPlayer.nativeElement;
