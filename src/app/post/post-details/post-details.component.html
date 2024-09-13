@@ -6,10 +6,10 @@
                     <h1>{{ postDTO.title }}</h1>
                 </mat-card-title>
                 <mat-card-content>
-                    <div class="user-profile mat-elevation-z3">
-                        <img *ngIf="postDTO.userPhoto" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
+                    <div class="mat-elevation-z3">
+                        <img *ngIf="postDTO.userPhoto != null" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
                         <div class="user-info">
-                        <h3 *ngIf="postDTO.userName" class="user-name">{{ postDTO.userName }}</h3>
+                        <h3 *ngIf="postDTO.userName != null" class="user-name">{{ postDTO.userName }}</h3>
                         </div>
                     </div>
                 </mat-card-content>
@@ -56,10 +56,10 @@
                     <mat-card>
                         <div  class="display-flex">
                             <mat-card-content>
-                                <div class="user-profile mat-elevation-z3">
-                                    <img *ngIf="comment2.userPhoto" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
+                                <div class=" mat-elevation-z3">
+                                    <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
                                     <div class="user-info">
-                                    <h3 *ngIf="comment.userName" class="user-name">{{ comment.userName }}</h3>
+                                    <h3 *ngIf="comment.userName != null" class="user-name">{{ comment.userName }}</h3>
                                     </div>
                                 </div>
                             </mat-card-content>
@@ -80,14 +80,14 @@
                         <button mat-button (click)="toggleReplySession(i)">
                             {{ replyComment[i] ? 'Cancel' : 'Reply' }}
                         </button>
-                        <div *ngIf="replyComment[i]">
-                            <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
-                                <textarea (keydown)="addCommentTo($event, comment.id)" id="comment" matInput [(ngModel)]="commentDTOto.data" placeholder="Comment"></textarea>
-                            </mat-form-field>
-                        </div>
                         <button *ngIf="comment.comments.length > 0" mat-button (click)="toggleReplies(i)">
                             {{ showReplies[i] ? 'Hide replies' : 'Show replies' }}
                         </button>
+                    </div>
+                    <div *ngIf="replyComment[i]">
+                        <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
+                            <textarea (keydown)="addCommentTo($event, comment.id)" id="comment" matInput [(ngModel)]="commentDTOto.data" placeholder="Comment"></textarea>
+                        </mat-form-field>
                     </div>
                     <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
                         <div *ngFor="let comment2 of comment.comments">
@@ -95,10 +95,10 @@
                                 <mat-card>
                                     <div  class="display-flex">
                                         <mat-card-content>
-                                            <div class="user-profile mat-elevation-z3">
-                                                <img *ngIf="comment2.userPhoto" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
+                                            <div class="mat-elevation-z3">
+                                                <img *ngIf="comment2.userPhoto != null" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
                                                 <div class="user-info">
-                                                <h3 *ngIf="comment2.userName" class="user-name">{{ comment2.userName }}</h3>
+                                                <h3 *ngIf="comment2.userName != null" class="user-name">{{ comment2.userName }}</h3>
                                                 </div>
                                             </div>
                                         </mat-card-content>
