@@ -23,10 +23,10 @@
             <mat-card-content>
                 <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO.id, 'like')">
                     <mat-icon>thumb_up</mat-icon>
-                </button>{{post.likes}}
+                </button>{{postDTO.likes}}
                 <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO.id, 'dislike')">
                     <mat-icon>thumb_down</mat-icon>
-                </button>{{post.dislikes}}
+                </button>{{postDTO.dislikes}}
             </mat-card-content>
         </div>
     </mat-card>
