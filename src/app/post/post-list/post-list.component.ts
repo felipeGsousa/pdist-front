@@ -144,6 +144,21 @@ export class PostListComponent implements OnInit {
     }
   } 
   */
+
+  share(post: any): void {
+    if (navigator.share) {
+      navigator.share({
+        title: post.title,
+        text: post.content,
+        url: "https://pdist-front.vercel.app/get-post/" + post.id 
+      })
+      .then(() => console.log('Compartilhamento realizado com sucesso!'))
+      .catch((error) => console.error('Erro ao compartilhar:', error));
+    } else {
+      console.log('Compartilhamento não suportado pelo navegador');
+    }
+  }
+
   private pauseAllVideos() {
     this.videoPlayers.forEach(videoPlayer => {
       const video: HTMLVideoElement = videoPlayer.nativeElement;
