@@ -46,10 +46,10 @@
                         <mat-card-content>
                             <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment.id, 'like')">
                                 <mat-icon>thumb_up</mat-icon>
-                            </button>{{post.likes}}
+                            </button>{{comment.likes}}
                             <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment.id, 'dislike')">
                                 <mat-icon>thumb_down</mat-icon>
-                            </button>{{post.dislikes}}
+                            </button>{{comment.dislikes}}
                         </mat-card-content>
                         <button mat-button (click)="toggleReplySession(i)">
                             {{ replyComment[i] ? 'Cancel' : 'Reply' }}
@@ -73,10 +73,10 @@
                                     <mat-card-content>
                                         <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2.id, 'like')">
                                             <mat-icon>thumb_up</mat-icon>
-                                        </button>{{post.likes}}
+                                        </button>{{comment2.likes}}
                                         <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2.id, 'dislike')">
                                             <mat-icon>thumb_down</mat-icon>
-                                        </button>{{post.dislikes}}
+                                        </button>{{comment2.dislikes}}
                                     </mat-card-content>
                                 </div>
                             </mat-card>
