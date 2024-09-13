@@ -68,10 +68,10 @@
                     
                     <div class="action-buttons">
                         <mat-card-content>
-                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment, comment.id, 'like')">
+                            <button type="button" mat-mini-fab [color]="comment.likeButtonColor"  (click) = "likeComment(comment, comment.id, 'like')">
                                 <mat-icon>thumb_up</mat-icon>
                             </button>{{comment.likes}}
-                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment, comment.id, 'dislike')">
+                            <button type="button" mat-mini-fab [color]="comment.dislikeButtonColor"  (click) = "likeComment(comment, comment.id, 'dislike')">
                                 <mat-icon>thumb_down</mat-icon>
                             </button>{{comment.dislikes}}
                         </mat-card-content>
@@ -104,10 +104,10 @@
                                 </div>  
                                 <div class="action-buttons">
                                     <mat-card-content>
-                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2, comment2.id, 'like')">
+                                        <button type="button" mat-mini-fab [color]="comment2.likeButtonColor"  (click) = "likeComment(comment2, comment2.id, 'like')">
                                             <mat-icon>thumb_up</mat-icon>
                                         </button>{{comment2.likes}}
-                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2, comment2.id, 'dislike')">
+                                        <button type="button" mat-mini-fab [color]="comment2.dislikeButtonColor"  (click) = "likeComment(comment2, comment2.id, 'dislike')">
                                             <mat-icon>thumb_down</mat-icon>
                                         </button>{{comment2.dislikes}}
                                     </mat-card-content>

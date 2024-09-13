@@ -67,6 +67,7 @@ export class PostDetailsComponent implements OnInit {
            
             if (this.loggedIn) {
               let exists = this.user.likedPosts[response.id];
+              console.log(exists);
               if (exists) {
                 if (exists === "like") {
                   this.postDTO.likeButtonColor = "primary";
@@ -156,6 +157,7 @@ export class PostDetailsComponent implements OnInit {
     comment.dislikeButtonColor = "secondary"
     if (this.loggedIn) {
       let exists = this.user.likedComments[comment.id];
+      console.log(exists);
       if (exists) {
         if (exists === "like") {
           comment.likeButtonColor = "primary";
