@@ -96,7 +96,7 @@ export class PostDetailsComponent implements OnInit {
           alert("Empty comment");
           return;
         } 
-        this.commentDTOto.userId = 'this.user.id';
+        this.commentDTOto.userId = this.userService.getUserId();
         this.commentService.addCommentTo(commentId, this.commentDTOto).subscribe(response => {
           console.log('Comment creating succesfully:', response);
           window.location.reload();
