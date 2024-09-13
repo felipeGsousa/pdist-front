@@ -8,7 +8,9 @@ export interface PostDTO {
     date: Date;
     likes: number;
     dislikes: number;
-    user: string;
+    userName: string;
+    userEmail: string;
+    userPhoto: string;
     userId: string;
     fileId: string;
     fileType: string;
