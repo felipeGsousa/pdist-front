@@ -21,10 +21,10 @@
         </div>
         <div class="action-buttons">
             <mat-card-content>
-                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO.id, 'like')">
+                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO, postDTO.id, 'like')">
                     <mat-icon>thumb_up</mat-icon>
                 </button>{{postDTO.likes}}
-                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO.id, 'dislike')">
+                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO, postDTO.id, 'dislike')">
                     <mat-icon>thumb_down</mat-icon>
                 </button>{{postDTO.dislikes}}
             </mat-card-content>
@@ -44,10 +44,10 @@
                     </mat-card-content>
                     <div class="action-buttons">
                         <mat-card-content>
-                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment.id, 'like')">
+                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment, comment.id, 'like')">
                                 <mat-icon>thumb_up</mat-icon>
                             </button>{{comment.likes}}
-                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment.id, 'dislike')">
+                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment, comment.id, 'dislike')">
                                 <mat-icon>thumb_down</mat-icon>
                             </button>{{comment.dislikes}}
                         </mat-card-content>
@@ -71,10 +71,10 @@
                                 </mat-card-content>
                                 <div class="action-buttons">
                                     <mat-card-content>
-                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2.id, 'like')">
+                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2, comment2.id, 'like')">
                                             <mat-icon>thumb_up</mat-icon>
                                         </button>{{comment2.likes}}
-                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2.id, 'dislike')">
+                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2, comment2.id, 'dislike')">
                                             <mat-icon>thumb_down</mat-icon>
                                         </button>{{comment2.dislikes}}
                                     </mat-card-content>

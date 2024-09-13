@@ -98,11 +98,14 @@ export class PostListComponent implements OnInit {
     this.router.navigate(['/get-post/'+ postId]);
   }
 
-  likePost(postId: string, type:string): void{
+  likePost(post:any ,postId: string, type:string): void{
     if (this.loggedIn) {
       this.userService.likePost(postId, type).subscribe(
         (response: any) => {
-          console.log(response);
+          if(response) {
+            post.dislikes = response.dislikes;
+            post.likes = response.likes;
+          }
         }, error => {
           console.error('Error: ', error);
         });

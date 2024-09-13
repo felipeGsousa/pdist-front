@@ -106,22 +106,28 @@ export class PostDetailsComponent implements OnInit {
     }
   }
 
-  likePost(postId: string, type:string): void{
+  likePost(post:any ,postId: string, type:string): void{
     if (this.loggedIn) {
       this.userService.likePost(postId, type).subscribe(
         (response: any) => {
-          console.log(response);
+          if(response) {
+            post.dislikes = response.dislikes;
+            post.likes = response.likes;
+          }
         }, error => {
           console.error('Error: ', error);
         });
     }
   }
 
-  likeComment(commentId: string, type:string): void {
+  likeComment(comment:any, commentId: string, type:string): void {
     if (this.loggedIn) {
       this.userService.likeComment(commentId, type).subscribe(
         (response: any) => {
-          console.log(response);
+          if(response) {
+            comment.dislikes = response.dislikes;
+            comment.likes = response.likes;
+          }
         }, error => {
           console.error('Error: ', error);
         });

@@ -52,7 +52,6 @@ export class UserService {
     }
     this.like.id = postId;
     this.like.type = type;
-    console.log(this.like)
     return this.http.post(this.userUrl + "post/" + `${this.getUserId()}`, this.like);
   }
 
@@ -70,7 +69,6 @@ export class UserService {
     }
     this.like.id = commentId;
     this.like.type = type;
-    console.log(this.like)
     return this.http.post(this.userUrl + "comment/" + `${this.getUserId()}`, this.like);
   }
 
