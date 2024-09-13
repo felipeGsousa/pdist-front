@@ -62,6 +62,7 @@ export class PostDetailsComponent implements OnInit {
             this.postDTO.fileName = this.postDTO.file.filename;
           };
         }
+        console.log(this.postDTO);
       }, error => {
         console.error('Error fetching post:', error);
       }
