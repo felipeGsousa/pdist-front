@@ -1,6 +1,14 @@
 <div *ngIf="postDTO != undefined">
     <mat-card class="post-card">
-        <mat-card-title>{{ postDTO.title }}</mat-card-title>
+        <mat-card-title>
+            <h1>{{ postDTO.title }}</h1>
+            <div class="user-profile mat-elevation-z3">
+                <img class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
+                <div class="user-info">
+                  <h3 class="user-name">{{ postDTO.userName }}</h3>
+                </div>
+              </div>
+        </mat-card-title>
         <mat-card-content>
             <h2>
             {{ postDTO.content }}
