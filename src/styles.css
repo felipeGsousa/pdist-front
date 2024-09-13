@@ -70,7 +70,12 @@ body { margin: 0;
     justify-content: space-between;
 }
 
-mat-card, p, mat-card-content{
+mat-card {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+p {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
