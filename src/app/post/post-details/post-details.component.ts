@@ -63,6 +63,8 @@ export class PostDetailsComponent implements OnInit {
 
             this.postDTO.likeButtonColor = "secondary";
             this.postDTO.dislikeButtonColor = "secondary"
+
+            console.log(typeof(this.user.likedPosts));
             /*
             if (this.loggedIn) {
               let exists = this.user.likedPosts.find((val: any) => val[0] === response.id);
