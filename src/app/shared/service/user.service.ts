@@ -40,13 +40,12 @@ export class UserService {
 
   likePost(postId:string, type:string){
     if (this.user.likedPosts.length > 0) {
-      let exists = this.user.likedPosts.find((val: any) => val[0] === postId);
+      let exists = this.user.likedPosts[postId];
       if (exists) {
-        if (exists[1]===type) {
-          this.user.likedPosts.removeItem(exists);
+        if (exists===type) {
+          delete this.user.likedPosts[postId];
         } else {
-          this.user.likedPosts.removeItem(exists);
-          this.user.likedPosts.insert({postId, type});
+          this.user.likedPosts[postId] = type;
         }
       }
     }
@@ -57,13 +56,12 @@ export class UserService {
 
   likeComment(commentId:string, type:string){
     if (this.user.likedComments.length > 0) {
-      let exists = this.user.likedComments.find((val: any) => val[0] === commentId);
+      let exists = this.user.likedComments[commentId];
       if (exists) {
-        if (exists[1]===type) {
-          this.user.likedComments.removeItem(exists);
+        if (exists===type) {
+          delete this.user.likedComments[commentId];
         } else {
-          this.user.likedComments.removeItem(exists);
-          this.user.likedComments.insert({commentId, type});
+          this.user.likedComments[commentId] = type;
         }
       }
     }

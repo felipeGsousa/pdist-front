@@ -64,12 +64,11 @@ export class PostDetailsComponent implements OnInit {
             this.postDTO.likeButtonColor = "secondary";
             this.postDTO.dislikeButtonColor = "secondary"
 
-            console.log(this.user.likedPosts[response.id]);
-            /*
+           
             if (this.loggedIn) {
-              let exists = this.user.likedPosts.find((val: any) => val[0] === response.id);
+              let exists = this.user.likedPosts[response.id];
               if (exists) {
-                if (exists[1] === "like") {
+                if (exists === "like") {
                   this.postDTO.likeButtonColor = "primary";
                   this.postDTO.dislikeButtonColor = "secondary";
                 } else {
@@ -77,7 +76,7 @@ export class PostDetailsComponent implements OnInit {
                   this.postDTO.dislikeButtonColor = "primary";
                 }
               }
-            }*/
+            }
           };
         }
       }, error => {
@@ -155,11 +154,10 @@ export class PostDetailsComponent implements OnInit {
   setCommentIconColor(comment: any) {
     comment.likeButtonColor = "secondary";
     comment.dislikeButtonColor = "secondary"
-    /*if (this.loggedIn) {
-      console.log(this.user.likedComments.length);
-      let exists = this.user.likedComments.find((val: any) => val[0] === comment.id);
+    if (this.loggedIn) {
+      let exists = this.user.likedComments[comment.id];
       if (exists) {
-        if (exists[1] === "like") {
+        if (exists === "like") {
           comment.likeButtonColor = "primary";
           comment.dislikeButtonColor = "secondary";
         } else {
@@ -167,7 +165,7 @@ export class PostDetailsComponent implements OnInit {
           comment.dislikeButtonColor = "primary";
         }
       }
-    }*/
+    }
   }
 
   toggleReplySession(index: number): void {
