@@ -41,6 +41,9 @@
                     <mat-icon>thumb_down</mat-icon>
                 </button>{{postDTO.dislikes}}
             </mat-card-content>
+            <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(postDTO)"></button>
+                <mat-icon>share</mat-icon>
+            </button>
         </div>
     </mat-card>
     <mat-card class="comment-session">

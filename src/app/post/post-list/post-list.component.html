@@ -33,6 +33,7 @@
         </div>
         <div class="action-buttons">
           <mat-card-content>
+            <!--{{likeButtonColor(post)}}-->
             <button type="button" mat-mini-fab [color]="post.likeButtonColor"  (click) = "likePost(post, post.id, 'like')">
               <mat-icon>thumb_up</mat-icon>
             </button>{{post.likes}}
@@ -42,6 +43,9 @@
           </mat-card-content>
           <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
             <mat-icon>chat_bubble_outline</mat-icon>
+          </button>
+          <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(post)"></button>
+            <mat-icon>share</mat-icon>
           </button>
         </div>
       </mat-card>
