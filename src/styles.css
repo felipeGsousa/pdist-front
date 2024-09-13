@@ -76,8 +76,8 @@ mat-card {
 }
 
 p {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
 }
 
 .user-profile {
