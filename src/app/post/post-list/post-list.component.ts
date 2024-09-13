@@ -20,12 +20,13 @@ export class PostListComponent implements OnInit {
   contentType: string = ''
   @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef>;
   loggedIn:boolean = false;
-
+  user: any;
 
   constructor(private userService:UserService, private postService: PostService, private sanitizer: DomSanitizer, private router: Router) {}
 
   ngOnInit(): void {
     this.loggedIn = this.userService.isLoggedIn();
+    this.user = this.userService.getUser();
     this.loadPosts();
     //this.loadFile();
   }
@@ -53,6 +54,20 @@ export class PostListComponent implements OnInit {
               post.fileType = post.file.contentType;
               post.fileUrl = this.sanitizeUrl(url);
               post.fileName = post.file.filename;
+              
+              let exists = this.user.likedPosts.find((val: any)=> val[0] === post.id);
+              if (exists) {
+                if (exists[1] === "like") {
+                  post.likeButtonColor = "primary";
+                  post.dislikeButtonColor = "secondary";
+                } else {
+                  post.likeButtonColor = "secondary";
+                  post.dislikeButtonColor = "primary";
+                }
+              } else {
+                post.likeButtonColor = "secondary";
+                post.dislikeButtonColor = "secondary";
+              }
             }
           }
         })

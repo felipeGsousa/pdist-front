@@ -22,4 +22,6 @@ export interface PostDTO {
         contentType: string;  
         filename: string;  
       }
+    likeButtonColor: string;
+    dislikeButtonColor: string;
 }

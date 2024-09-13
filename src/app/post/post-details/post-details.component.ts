@@ -60,9 +60,22 @@ export class PostDetailsComponent implements OnInit {
             this.postDTO.fileType = this.postDTO.file.contentType;
             this.postDTO.fileUrl = this.sanitizeUrl(url);
             this.postDTO.fileName = this.postDTO.file.filename;
+            
+            let exists = this.user.likedPosts.find((val: any)=> val[0] === response.id);
+            if (exists) {
+              if (exists[1] === "like") {
+                this.postDTO.likeButtonColor = "primary";
+                this.postDTO.dislikeButtonColor = "secondary";
+              } else {
+                this.postDTO.likeButtonColor = "secondary";
+                this.postDTO.dislikeButtonColor = "primary";
+              }
+            } else {
+              this.postDTO.likeButtonColor = "secondary";
+              this.postDTO.dislikeButtonColor = "secondary";
+            }
           };
         }
-        console.log(this.postDTO);
       }, error => {
         console.error('Error fetching post:', error);
       }
@@ -132,6 +145,22 @@ export class PostDetailsComponent implements OnInit {
         }, error => {
           console.error('Error: ', error);
         });
+    }
+  }
+
+  setCommentIconColor(comment: any) {
+    let exists = this.user.likedComments.find((val: any)=> val[0] === comment.id);
+    if (exists) {
+      if (exists[1] === "like") {
+        comment.likeButtonColor = "primary";
+        comment.dislikeButtonColor = "secondary";
+      } else {
+        comment.likeButtonColor = "secondary";
+        comment.dislikeButtonColor = "primary";
+      }
+    } else {
+        comment.likeButtonColor = "secondary";
+        comment.dislikeButtonColor = "secondary";
     }
   }
 

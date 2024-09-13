@@ -63,6 +63,10 @@ export class ForumCreateComponent implements OnInit {
   }
 
   addForum() {
+    if (this.forumData.name.trim() === "" || this.forumData.description.trim() === "" || this.forumData.topic.trim() === ""){
+      alert("Empty field");
+      return;
+    };
     this.forumData.userId = this.userService.getUserId();
     this.forumService.addForum(this.forumData).subscribe(response => {
       console.log('Forum creating succesfully:', response);

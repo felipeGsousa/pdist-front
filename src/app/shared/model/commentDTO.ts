@@ -8,4 +8,6 @@ export interface CommentDTO {
     data: string;
     comments: CommentDTO[];
     date: Date; 
+    likeButtonColor: string;
+    dislikeButtonColor: string;
 }

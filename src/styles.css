@@ -80,6 +80,10 @@ p {
     white-space: normal;
 }
 
+.comment-content {
+    width: 600px;
+}
+
 .user-profile {
     display: flex;
     align-items: center;

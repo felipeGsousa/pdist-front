@@ -62,6 +62,11 @@ export class PostCreateComponent implements OnInit {
   }
 
   addPost() {
+    if (this.postData.title.trim() === "" || this.postData.content.trim() === ""){
+      alert("Empty field");
+      return;
+    };
+
     let forumId = localStorage.getItem('forumId');
     this.postData.userId = this.userService.getUserId();
     if (forumId != null){

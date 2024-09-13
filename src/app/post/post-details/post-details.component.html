@@ -34,10 +34,10 @@
         </div>
         <div class="action-buttons">
             <mat-card-content>
-                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO, postDTO.id, 'like')">
+                <button type="button" mat-mini-fab [color]="postDTO.likeButtonColor"  (click) = "likePost(postDTO, postDTO.id, 'like')">
                     <mat-icon>thumb_up</mat-icon>
                 </button>{{postDTO.likes}}
-                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(postDTO, postDTO.id, 'dislike')">
+                <button type="button" mat-mini-fab [color]="postDTO.dislikeButtonColor"  (click) = "likePost(postDTO, postDTO.id, 'dislike')">
                     <mat-icon>thumb_down</mat-icon>
                 </button>{{postDTO.dislikes}}
             </mat-card-content>
@@ -51,9 +51,9 @@
         </mat-form-field>
         <div *ngIf="postDTO.comments.length > 0">
             <div *ngFor="let comment of postDTO.comments; let i = index">
-                <mat-card class="comment-card">
+                <mat-card class="comment-card" setCommentIconColor(comment)>
                     <div  class="display-flex">
-                        <mat-card-content>
+                        <mat-card-content class="comment-content">
                             <p>{{comment.data}}</p>
                         </mat-card-content>
                         <div style="display: flex; justify-content: center;">
@@ -88,9 +88,9 @@
                     </div>
                     <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
                         <div *ngFor="let comment2 of comment.comments">
-                            <mat-card class="reply-card">
+                            <mat-card class="reply-card" setCommentIconColor(comment2)>
                                 <div class="display-flex">
-                                    <mat-card-content>
+                                    <mat-card-content class="comment-content">
                                         <p>{{comment2.data}}</p>
                                     </mat-card-content>
                                     <div style="display: flex; justify-content: center;">
