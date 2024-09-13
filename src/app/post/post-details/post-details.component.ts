@@ -88,19 +88,43 @@ export class PostDetailsComponent implements OnInit {
   }
 
   addCommentTo(event:any, commentId:string){
-    if (event.keyCode === 13) {
-      console.log(this.commentDTOto)
-      if (this.commentDTOto.data.trim() === ""){
-        alert("Empty comment");
-        return;
-      } 
-      this.commentDTOto.userId = 'this.user.id';
-      this.commentService.addCommentTo(commentId, this.commentDTOto).subscribe(response => {
-        console.log('Comment creating succesfully:', response);
-        window.location.reload();
-      },error => {
-        console.error('Error creating forum:', error);
-      });  
+    if (this.loggedIn) {
+      if (event.keyCode === 13) {
+        console.log(this.commentDTOto)
+        if (this.commentDTOto.data.trim() === ""){
+          alert("Empty comment");
+          return;
+        } 
+        this.commentDTOto.userId = 'this.user.id';
+        this.commentService.addCommentTo(commentId, this.commentDTOto).subscribe(response => {
+          console.log('Comment creating succesfully:', response);
+          window.location.reload();
+        },error => {
+          console.error('Error creating forum:', error);
+        });  
+      }
+    }
+  }
+
+  likePost(postId: string, type:string): void{
+    if (this.loggedIn) {
+      this.userService.likePost(postId, type).subscribe(
+        (response: any) => {
+          console.log(response);
+        }, error => {
+          console.error('Error: ', error);
+        });
+    }
+  }
+
+  likeComment(commentId: string, type:string): void {
+    if (this.loggedIn) {
+      this.userService.likeComment(commentId, type).subscribe(
+        (response: any) => {
+          console.log(response);
+        }, error => {
+          console.error('Error: ', error);
+        });
     }
   }
 

@@ -21,12 +21,12 @@
         </div>
         <div class="action-buttons">
             <mat-card-content>
-              <button type="button" mat-mini-fab color="secondary">
-                <mat-icon>thumb_up</mat-icon>
-              </button>{{postDTO.likes}}
-              <button type="button" mat-mini-fab color="secondary">
-                <mat-icon>thumb_down</mat-icon>
-              </button>{{postDTO.dislikes}}
+                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(post.id, 'like')">
+                    <mat-icon>thumb_up</mat-icon>
+                </button>{{post.likes}}
+                <button type="button" mat-mini-fab color="secondary"  (click) = "likePost(post.id, 'dislike')">
+                    <mat-icon>thumb_down</mat-icon>
+                </button>{{post.dislikes}}
             </mat-card-content>
         </div>
     </mat-card>
@@ -42,23 +42,43 @@
                     <mat-card-content>
                         <p>{{comment.data}}</p>
                     </mat-card-content>
-                    <button mat-button (click)="toggleReplySession(i)">
-                        {{ replyComment[i] ? 'Cancel' : 'Reply' }}
-                    </button>
-                    <div *ngIf="replyComment[i]">
-                        <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
-                            <textarea (keydown)="addCommentTo($event, comment.id)" id="comment" matInput [(ngModel)]="commentDTOto.data" placeholder="Comment"></textarea>
-                        </mat-form-field>
+                    <div class="action-buttons">
+                        <mat-card-content>
+                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment.id, 'like')">
+                                <mat-icon>thumb_up</mat-icon>
+                            </button>{{post.likes}}
+                            <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment.id, 'dislike')">
+                                <mat-icon>thumb_down</mat-icon>
+                            </button>{{post.dislikes}}
+                        </mat-card-content>
+                        <button mat-button (click)="toggleReplySession(i)">
+                            {{ replyComment[i] ? 'Cancel' : 'Reply' }}
+                        </button>
+                        <div *ngIf="replyComment[i]">
+                            <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
+                                <textarea (keydown)="addCommentTo($event, comment.id)" id="comment" matInput [(ngModel)]="commentDTOto.data" placeholder="Comment"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <button *ngIf="comment.comments.length > 0" mat-button (click)="toggleReplies(i)">
+                            {{ showReplies[i] ? 'Hide replies' : 'Show replies' }}
+                        </button>
                     </div>
-                    <button *ngIf="comment.comments.length > 0" mat-button (click)="toggleReplies(i)">
-                        {{ showReplies[i] ? 'Hide replies' : 'Show replies' }}
-                    </button>
                     <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
                         <div *ngFor="let comment2 of comment.comments">
                             <mat-card class="reply-card">
                                 <mat-card-content>
                                     <p>{{comment2.data}}</p>
                                 </mat-card-content>
+                                <div class="action-buttons">
+                                    <mat-card-content>
+                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2.id, 'like')">
+                                            <mat-icon>thumb_up</mat-icon>
+                                        </button>{{post.likes}}
+                                        <button type="button" mat-mini-fab color="secondary"  (click) = "likeComment(comment2.id, 'dislike')">
+                                            <mat-icon>thumb_down</mat-icon>
+                                        </button>{{post.dislikes}}
+                                    </mat-card-content>
+                                </div>
                             </mat-card>
                         </div>
                     </div>

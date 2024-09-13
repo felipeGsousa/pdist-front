@@ -56,7 +56,23 @@ export class UserService {
     return this.http.post(this.userUrl + "post/" + `${this.getUserId()}`, this.like);
   }
 
-  likeComment(){}
+  likeComment(commentId:string, type:string){
+    if (this.user.likedComments.length > 0) {
+      let exists = this.user.likedComments.find((val: any) => val[0] === commentId);
+      if (exists) {
+        if (exists[1]===type) {
+          this.user.likedComments.removeItem(exists);
+        } else {
+          this.user.likedComments.removeItem(exists);
+          this.user.likedComments.insert({commentId, type});
+        }
+      }
+    }
+    this.like.id = commentId;
+    this.like.type = type;
+    console.log(this.like)
+    return this.http.post(this.userUrl + "comment/" + `${this.getUserId()}`, this.like);
+  }
 
   getUserId() {
     return this.user.id
