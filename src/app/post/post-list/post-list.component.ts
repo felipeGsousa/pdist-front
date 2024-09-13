@@ -128,7 +128,7 @@ export class PostListComponent implements OnInit {
         });
     }
   }
-
+  /*
   likeButtonColor(post: any) {
     if (this.loggedIn) {
       let exists = this.user.likedPosts[post.id];
@@ -143,7 +143,7 @@ export class PostListComponent implements OnInit {
       }
     }
   } 
-
+  */
   private pauseAllVideos() {
     this.videoPlayers.forEach(videoPlayer => {
       const video: HTMLVideoElement = videoPlayer.nativeElement;
