@@ -1,6 +1,5 @@
 <div *ngIf="postDTO != undefined">
     <mat-card class="post-card">
-
         <div  class="display-flex">
             <mat-card-title>
                 <h1>{{ postDTO.title }}</h1>
@@ -41,7 +40,7 @@
                     <mat-icon>thumb_down</mat-icon>
                 </button>{{postDTO.dislikes}}
             </mat-card-content>
-            <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(postDTO)"></button>
+            <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(postDTO)">
                 <mat-icon>share</mat-icon>
             </button>
         </div>
