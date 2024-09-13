@@ -80,7 +80,7 @@ mat-card {
     align-items: center;
     padding: 10px;
     border-radius: 8px;
-    background-color: rgb(45, 45, 45);
+    background-color: rgb(74, 74, 74);
     max-width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
@@ -106,4 +106,5 @@ mat-card {
 
   .display-flex {
     display: flex;
+    justify-content: space-between;
   }
