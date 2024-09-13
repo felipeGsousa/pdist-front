@@ -63,7 +63,7 @@ export class PostDetailsComponent implements OnInit {
 
             this.postDTO.likeButtonColor = "secondary";
             this.postDTO.dislikeButtonColor = "secondary"
-            
+            /*
             if (this.loggedIn) {
               let exists = this.user.likedPosts.find((val: any) => val[0] === response.id);
               if (exists) {
@@ -75,7 +75,7 @@ export class PostDetailsComponent implements OnInit {
                   this.postDTO.dislikeButtonColor = "primary";
                 }
               }
-            }
+            }*/
           };
         }
       }, error => {
@@ -153,7 +153,7 @@ export class PostDetailsComponent implements OnInit {
   setCommentIconColor(comment: any) {
     comment.likeButtonColor = "secondary";
     comment.dislikeButtonColor = "secondary"
-    if (this.loggedIn) {
+    /*if (this.loggedIn) {
       console.log(this.user.likedComments.length);
       let exists = this.user.likedComments.find((val: any) => val[0] === comment.id);
       if (exists) {
@@ -165,7 +165,7 @@ export class PostDetailsComponent implements OnInit {
           comment.dislikeButtonColor = "primary";
         }
       }
-    }
+    }*/
   }
 
   toggleReplySession(index: number): void {
