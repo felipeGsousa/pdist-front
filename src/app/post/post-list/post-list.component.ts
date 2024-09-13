@@ -27,7 +27,6 @@ export class PostListComponent implements OnInit {
   ngOnInit(): void {
     this.loggedIn = this.userService.isLoggedIn();
     this.user = this.userService.getUser();
-    console.log(this.user);
     this.loadPosts();
     //this.loadFile();
   }
