@@ -1,16 +1,20 @@
 <div *ngIf="postDTO != undefined">
     <mat-card class="post-card">
-        <mat-card-title>
+        <mat-card>
             <div  class="display-flex">
-                <h1>{{ postDTO.title }}</h1>
-                <div class="user-profile mat-elevation-z3">
-                    <img class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
-                    <div class="user-info">
-                    <h3 class="user-name">{{ postDTO.userName }}</h3>
+                <mat-card-title>
+                    <h1>{{ postDTO.title }}</h1>
+                </mat-card-title>
+                <mat-card-content>
+                    <div class="user-profile mat-elevation-z3">
+                        <img *ngIf="postDTO.userPhoto" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
+                        <div class="user-info">
+                        <h3 *ngIf="postDTO.userName" class="user-name">{{ postDTO.userName }}</h3>
+                        </div>
                     </div>
-                </div>
+                </mat-card-content>
             </div>
-        </mat-card-title>
+        </mat-card>
         <mat-card-content>
             <h2>
             {{ postDTO.content }}
@@ -49,6 +53,18 @@
         <div *ngIf="postDTO.comments.length > 0">
             <div *ngFor="let comment of postDTO.comments; let i = index">
                 <mat-card class="comment-card">
+                    <mat-card>
+                        <div  class="display-flex">
+                            <mat-card-content>
+                                <div class="user-profile mat-elevation-z3">
+                                    <img *ngIf="comment2.userPhoto" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
+                                    <div class="user-info">
+                                    <h3 *ngIf="comment.userName" class="user-name">{{ comment.userName }}</h3>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </div>
+                    </mat-card>
                     <mat-card-content>
                         <p>{{comment.data}}</p>
                     </mat-card-content>
@@ -76,6 +92,18 @@
                     <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
                         <div *ngFor="let comment2 of comment.comments">
                             <mat-card class="reply-card">
+                                <mat-card>
+                                    <div  class="display-flex">
+                                        <mat-card-content>
+                                            <div class="user-profile mat-elevation-z3">
+                                                <img *ngIf="comment2.userPhoto" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
+                                                <div class="user-info">
+                                                <h3 *ngIf="comment2.userName" class="user-name">{{ comment2.userName }}</h3>
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                    </div>
+                                </mat-card>
                                 <mat-card-content>
                                     <p>{{comment2.data}}</p>
                                 </mat-card-content>
