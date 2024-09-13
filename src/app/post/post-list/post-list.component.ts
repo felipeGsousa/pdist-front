@@ -54,19 +54,21 @@ export class PostListComponent implements OnInit {
               post.fileType = post.file.contentType;
               post.fileUrl = this.sanitizeUrl(url);
               post.fileName = post.file.filename;
+
+              post.likeButtonColor = "secondary";
+              post.dislikeButtonColor = "secondary";
               
-              let exists = this.user.likedPosts.find((val: any)=> val[0] === post.id);
-              if (exists) {
-                if (exists[1] === "like") {
-                  post.likeButtonColor = "primary";
-                  post.dislikeButtonColor = "secondary";
-                } else {
-                  post.likeButtonColor = "secondary";
-                  post.dislikeButtonColor = "primary";
+              if (this.loggedIn) {
+                let exists = this.user.likedPosts.find((val: any)=> val[0] === post.id);
+                if (exists) {
+                  if (exists[1] === "like") {
+                    post.likeButtonColor = "primary";
+                    post.dislikeButtonColor = "secondary";
+                  } else {
+                    post.likeButtonColor = "secondary";
+                    post.dislikeButtonColor = "primary";
+                  }
                 }
-              } else {
-                post.likeButtonColor = "secondary";
-                post.dislikeButtonColor = "secondary";
               }
             }
           }
