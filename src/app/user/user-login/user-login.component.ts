@@ -50,7 +50,6 @@ export class UserLoginComponent implements OnInit {
         this.user = data;
         this.loggedIn = true;
         this.userService.setUser(this.user, this.loggedIn);
-        console.log(data);
         this.router.navigate(['/home']);
       },
       error => {

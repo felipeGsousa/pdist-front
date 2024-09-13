@@ -63,7 +63,7 @@ export class ForumCreateComponent implements OnInit {
   }
 
   addForum() {
-    if (this.forumData.name.trim() === "" || this.forumData.description.trim() === "" || this.forumData.topic.trim() === ""){
+    if (this.forumData.name.trim() === "" || this.forumData.description.trim() === ""){
       alert("Empty field");
       return;
     };
