@@ -1,20 +1,19 @@
 <div *ngIf="postDTO != undefined">
     <mat-card class="post-card">
-        <mat-card>
-            <div  class="display-flex">
-                <mat-card-title>
-                    <h1>{{ postDTO.title }}</h1>
-                </mat-card-title>
-                <mat-card-content>
-                    <div style="display: flex; justify-content: center;">
-                        <img *ngIf="postDTO.userPhoto != null" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
-                        <div class="user-info">
+
+        <div  class="display-flex">
+            <mat-card-title>
+                <h1>{{ postDTO.title }}</h1>
+            </mat-card-title>
+            <mat-card-content>
+                <div style="display: flex; justify-content: center;">
+                    <img *ngIf="postDTO.userPhoto != null" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
+                    <div class="user-info">
                         <h3 *ngIf="postDTO.userName != null" class="user-name">{{ postDTO.userName }}</h3>
-                        </div>
                     </div>
-                </mat-card-content>
-            </div>
-        </mat-card>
+                </div>
+            </mat-card-content>
+        </div>
         <mat-card-content>
             <h2>
             {{ postDTO.content }}
@@ -58,7 +57,7 @@
                             <p>{{comment.data}}</p>
                         </mat-card-content>
                         <div style="display: flex; justify-content: center;">
-                            <img *ngIf="comment.userPhoto != null" class="user-avatar" style="size: 20px;" [src]="comment.userPhoto" alt="User Avatar">
+                            <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
                             <div class="user-info">
                                 <h4 *ngIf="comment.userName != null" class="user-name">{{ comment.userName }}</h4>
                             </div>
@@ -95,7 +94,7 @@
                                         <p>{{comment2.data}}</p>
                                     </mat-card-content>
                                     <div style="display: flex; justify-content: center;">
-                                        <img *ngIf="comment2.userPhoto != null" class="user-avatar" style="size: 20px;" [src]="comment2.userPhoto" alt="User Avatar">
+                                        <img *ngIf="comment2.userPhoto != null" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
                                         <div class="user-info">
                                             <h4 *ngIf="comment2.userName != null" class="user-name">{{ comment2.userName }}</h4>
                                         </div>
