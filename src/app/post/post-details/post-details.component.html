@@ -51,7 +51,8 @@
         </mat-form-field>
         <div *ngIf="postDTO.comments.length > 0">
             <div *ngFor="let comment of postDTO.comments; let i = index">
-                <mat-card class="comment-card" setCommentIconColor(comment)>
+                <mat-card class="comment-card">
+                    {{setCommentIconColor(comment)}}
                     <div  class="display-flex">
                         <mat-card-content class="comment-content">
                             <p>{{comment.data}}</p>
@@ -88,7 +89,8 @@
                     </div>
                     <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
                         <div *ngFor="let comment2 of comment.comments">
-                            <mat-card class="reply-card" setCommentIconColor(comment2)>
+                            <mat-card class="reply-card">
+                                {{setCommentIconColor(comment2)}}
                                 <div class="display-flex">
                                     <mat-card-content class="comment-content">
                                         <p>{{comment2.data}}</p>
