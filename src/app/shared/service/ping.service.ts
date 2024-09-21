@@ -21,7 +21,7 @@ export class PingService {
 
   // Função que faz a requisição ao backend
   private pingBackend(url: string): Observable<any> {
-    return this.http.get(url);
+    return this.http.get(url, { responseType: 'text' });
   }
 
 }
