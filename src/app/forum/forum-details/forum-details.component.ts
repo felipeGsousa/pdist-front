@@ -49,17 +49,17 @@ export class ForumDetailsComponent implements OnInit {
           const url = URL.createObjectURL(blob);
           this.forumBanner = this.sanitizeUrl(url);
         }
+        if (this.loggedIn) {
+          const user = this.userService.getUser();
+          console.log(this.forumDTO?.users)
+          if (this.forumDTO?.users.find((obj)=> obj === user.id)) {
+            console.log(true);
+          }
+        }
       }, error => {
         console.error('Error fetching forum', error);
       }
     )
-    if (this.loggedIn) {
-      const user = this.userService.getUser();
-      console.log(this.forumDTO?.users)
-      if (this.forumDTO?.users.find((obj)=> obj === user.id)) {
-        console.log(true);
-      }
-    }
   }
 
   createPost(): void {
