@@ -12,7 +12,7 @@ import { UserService } from 'src/app/shared/service/user.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   user: any = null;
   loggedIn: boolean = false;
@@ -30,6 +30,7 @@ export class UserLoginComponent implements OnInit {
       );
 
       google.accounts.id.prompt(); 
+      google.accounts.id.disableAutoSelect();
     };
 
     this.user = this.userService.getUser();
@@ -49,6 +50,9 @@ export class UserLoginComponent implements OnInit {
         this.user = data;
         this.loggedIn = true;
         this.userService.setUser(this.user, this.loggedIn);
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       },
       error => {
         console.error("Authentication error", error);
@@ -71,6 +75,5 @@ export class UserLoginComponent implements OnInit {
     this.user = null;
     this.loggedIn = false;
     this.userService.clearUser();
-    google.accounts.id.disableAutoSelect();
   }
 }

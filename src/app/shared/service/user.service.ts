@@ -17,7 +17,7 @@ export class UserService {
     type: ""
   };
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     const storedUser = localStorage.getItem('user');
     const storedLoggedIn = localStorage.getItem('loggedIn');
 
@@ -37,9 +37,6 @@ export class UserService {
     this.loggedIn = loggedIn;
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('loggedIn', 'true'); 
-    this.router.navigate(['/home']).then(() => {
-      window.location.reload();
-    });
   }
 
   likePost(postId:string, type:string){
