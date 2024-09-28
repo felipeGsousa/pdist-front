@@ -27,7 +27,7 @@ export class UserLoginComponent implements OnInit {
 
       google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
-        { theme: "outline", size: "large" , prompt_parent_id: "buttonDiv", prompt: "select_account" }  
+        { theme: "outline", size: "large" , prompt_parent_id: "buttonDiv", prompt: "select_account"}  
       );
 
       google.accounts.id.prompt(); 
@@ -49,8 +49,8 @@ export class UserLoginComponent implements OnInit {
       data => {
         this.user = data;
         this.loggedIn = true;
-        this.userService.setUser(this.user, this.loggedIn);
         this.router.navigate(['/home']);
+        this.userService.setUser(this.user, this.loggedIn);
       },
       error => {
         console.error("Authentication error", error);
