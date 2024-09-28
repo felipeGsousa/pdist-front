@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class UserService {
     type: ""
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const storedUser = localStorage.getItem('user');
     const storedLoggedIn = localStorage.getItem('loggedIn');
 
@@ -36,6 +37,7 @@ export class UserService {
     this.loggedIn = loggedIn;
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('loggedIn', 'true'); 
+    this.router.navigate(['/home']);
   }
 
   likePost(postId:string, type:string){

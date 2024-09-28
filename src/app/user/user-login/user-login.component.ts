@@ -12,13 +12,12 @@ import { UserService } from 'src/app/shared/service/user.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService) { }
 
   user: any = null;
   loggedIn: boolean = false;
 
   ngOnInit() {
-    // Inicializar o cliente de autenticação do Google
     window.onload = () => {
       google.accounts.id.initialize({
         client_id: '191868191902-gimo3fjquu6o2n11714micmb2iv0e4ot.apps.googleusercontent.com',
@@ -50,7 +49,6 @@ export class UserLoginComponent implements OnInit {
         this.user = data;
         this.loggedIn = true;
         this.userService.setUser(this.user, this.loggedIn);
-        return this.router.navigate(['/home']);
       },
       error => {
         console.error("Authentication error", error);
