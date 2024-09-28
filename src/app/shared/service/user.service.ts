@@ -37,7 +37,9 @@ export class UserService {
     this.loggedIn = loggedIn;
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('loggedIn', 'true'); 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home']).then(() => {
+      window.location.reload();
+    });
   }
 
   likePost(postId:string, type:string){
