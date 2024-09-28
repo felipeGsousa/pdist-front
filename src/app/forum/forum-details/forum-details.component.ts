@@ -53,9 +53,9 @@ export class ForumDetailsComponent implements OnInit {
         console.error('Error fetching forum', error);
       }
     )
-    console.log(this.loggedIn)
     if (this.loggedIn) {
       const user = this.userService.getUser();
+      console.log(this.forumDTO?.users.find(user.id))
       if (this.forumDTO?.users.find(user.id)) {
         console.log(true);
       }
