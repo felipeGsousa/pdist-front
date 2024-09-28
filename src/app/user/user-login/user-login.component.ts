@@ -49,8 +49,8 @@ export class UserLoginComponent implements OnInit {
       data => {
         this.user = data;
         this.loggedIn = true;
-        this.router.navigate(['/home']);
         this.userService.setUser(this.user, this.loggedIn);
+        return this.router.navigate(['/home']);
       },
       error => {
         console.error("Authentication error", error);
