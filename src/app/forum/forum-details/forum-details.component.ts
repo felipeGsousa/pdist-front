@@ -55,7 +55,7 @@ export class ForumDetailsComponent implements OnInit {
     )
     if (this.loggedIn) {
       const user = this.userService.getUser();
-      console.log(this.forumDTO?.users.find(user.id))
+      console.log(this.forumDTO?.users.find((obj)=> obj === user.id))
       if (this.forumDTO?.users.find((obj)=> obj === user.id)) {
         console.log(true);
       }
