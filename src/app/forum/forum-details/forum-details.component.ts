@@ -19,6 +19,7 @@ export class ForumDetailsComponent implements OnInit {
   forumId: string = "";
   forumDTO: ForumDTO | undefined;
   forumBanner: SafeUrl | undefined;
+  userIn: boolean = false;
   private routeSub: Subscription | undefined;
   loggedIn:boolean = false;
 
@@ -26,6 +27,7 @@ export class ForumDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedIn = this.userService.isLoggedIn();
+
     this.routeSub = this.route.params.subscribe(params => {
       this.forumService.setForumId(params['id']);
     })
@@ -51,6 +53,12 @@ export class ForumDetailsComponent implements OnInit {
         console.error('Error fetching forum', error);
       }
     )
+    if (this.loggedIn) {
+      const user = this.userService.getUser();
+      if (this.forumDTO?.users.find(user.id)) {
+        console.log(true);
+      }
+    }
   }
 
   createPost(): void {
