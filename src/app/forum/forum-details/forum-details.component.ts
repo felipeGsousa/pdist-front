@@ -34,6 +34,7 @@ export class ForumDetailsComponent implements OnInit {
     this.forumService.getForum().subscribe(
       (response: ForumDTO) => {
         this.forumDTO = response;
+        this.forumId = this.forumDTO.id;
         if (response.banner != null) {
           const byteCharacters = atob(response.banner);
           const byteNumbers = new Array(byteCharacters.length)
@@ -63,11 +64,23 @@ export class ForumDetailsComponent implements OnInit {
   }
 
   joinForum() {
-    console.log(this.forumDTO);
+    this.forumService.joinForum(this.forumId, this.userService.getUserId()).subscribe(
+      () => {
+        this.userIn = true;
+    }, error => {
+      console.log('Error joining forum:', error);
+    }
+    );
   }
 
   leaveForum() {
-    console.log(this.forumDTO);
+    this.forumService.leaveForum(this.forumId, this.userService.getUserId()).subscribe(
+      () => {
+        this.userIn = false;
+    }, error => {
+      console.log('Error leaving forum:', error);
+    }
+    );
   }
 
   createPost(): void {

@@ -29,6 +29,14 @@ export class ForumService {
     return this.http.get<ForumDTO>(this.url + `/${localStorage.getItem("forumId")}`);
   }
 
+  joinForum(forumId: string, userId: string): Observable<ForumDTO>{
+    return this.http.put<ForumDTO>(this.url + `/leave/${forumId}`, userId);
+  }
+
+  leaveForum(forumId: string, userId: string): Observable<ForumDTO>{
+    return this.http.put<ForumDTO>(this.url + `/leave/${forumId}`, userId);
+  }
+
   setForumId(forumId: string) {
     this.id = forumId;
     localStorage.setItem('forumId', forumId);
