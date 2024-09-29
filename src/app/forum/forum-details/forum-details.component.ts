@@ -62,6 +62,14 @@ export class ForumDetailsComponent implements OnInit {
     )
   }
 
+  joinForum() {
+    console.log(this.forumDTO);
+  }
+
+  leaveForum() {
+    console.log(this.forumDTO);
+  }
+
   createPost(): void {
     const dialogRef = this.dialog.open(PostCreateComponent, {
       width: '500px',

@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class CommentService {
 
-  private url = "https://pdist-back.onrender.com/api/comments";
-  //private url = "http://localhost:8082/api/comments";
+  //private url = "https://pdist-back.onrender.com/api/comments";
+  private url = "http://localhost:8082/api/comments";
 
   constructor(private http: HttpClient) { }
 
