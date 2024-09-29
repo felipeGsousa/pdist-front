@@ -1,8 +1,8 @@
 <div *ngIf="loggedIn && userIn">
     <button type="button" mat-flat-button color="primary" (click)="createPost()">New Post</button>
-    <button type="button" mat-flat-button color="primary" (click)="joinForum()">Leave</button>
+    <button type="button" mat-flat-button color="primary" (click)="leaveForum()">Leave</button>
 </div>
-<button *ngIf="loggedIn && !userIn" type="button" mat-flat-button color="primary" (click)="leaveForum()">Join</button>
+<button *ngIf="loggedIn && !userIn" type="button" mat-flat-button color="primary" (click)="joinForum()">Join</button>
 
 <!---<img class="forum-banner" *ngIf="forumBanner != undefined" [src]="forumBanner">--->
 
