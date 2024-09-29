@@ -30,7 +30,7 @@ export class ForumService {
   }
 
   joinForum(forumId: string, userId: string): Observable<ForumDTO>{
-    return this.http.put<ForumDTO>(this.url + `/leave/${forumId}`, userId);
+    return this.http.put<ForumDTO>(this.url + `/join/${forumId}`, userId);
   }
 
   leaveForum(forumId: string, userId: string): Observable<ForumDTO>{
