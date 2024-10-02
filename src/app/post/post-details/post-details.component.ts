@@ -129,6 +129,7 @@ export class PostDetailsComponent implements OnInit {
         (response: any) => {
           if(response) {
             this.userService.setUser(response, true);
+            window.location.reload();
           }
         }, error => {
           console.error('Error: ', error);
@@ -142,6 +143,7 @@ export class PostDetailsComponent implements OnInit {
         (response: any) => {
           if(response) {
             this.userService.setUser(response, true);
+            window.location.reload();
           }
         }, error => {
           console.error('Error: ', error);
