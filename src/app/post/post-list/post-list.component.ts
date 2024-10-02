@@ -62,6 +62,7 @@ export class PostListComponent implements OnInit {
                 console.log();
                 let exists = this.user.likedPosts[post.id];
                 if (exists !== "") {
+                  console.log(exists)
                   if (exists === "like") {
                     post.likeButtonColor = "primary";
                     post.dislikeButtonColor = "secondary";
