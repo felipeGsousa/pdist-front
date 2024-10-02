@@ -57,7 +57,7 @@ export class PostListComponent implements OnInit {
 
               post.likeButtonColor = "secondary";
               post.dislikeButtonColor = "secondary";
-              /*
+              
               if (this.loggedIn) {
                 let exists = this.user.likedPosts.forEach((val: any)=> val[0] === post.id);
                 if (exists) {
@@ -69,7 +69,7 @@ export class PostListComponent implements OnInit {
                     post.dislikeButtonColor = "primary";
                   }
                 }
-              }*/
+              }
             }
           }
         })
@@ -120,8 +120,7 @@ export class PostListComponent implements OnInit {
       this.userService.likePost(postId, type).subscribe(
         (response: any) => {
           if(response) {
-            post.dislikes = response.dislikes;
-            post.likes = response.likes;
+            this.userService.setUser(response, true);
           }
         }, error => {
           console.error('Error: ', error);
