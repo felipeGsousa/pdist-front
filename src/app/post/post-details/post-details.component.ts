@@ -64,7 +64,7 @@ export class PostDetailsComponent implements OnInit {
             this.postDTO.likeButtonColor = "secondary";
             this.postDTO.dislikeButtonColor = "secondary"
 
-            /*
+            
             if (this.loggedIn) {
               let exists = this.user.likedPosts[response.id];
               if (exists != undefined) {
@@ -76,7 +76,7 @@ export class PostDetailsComponent implements OnInit {
                   this.postDTO.dislikeButtonColor = "primary";
                 }
               }
-            }*/
+            }
           };
         }
       }, error => {
@@ -152,7 +152,7 @@ export class PostDetailsComponent implements OnInit {
   setCommentIconColor(comment: any) {
     comment.likeButtonColor = "secondary";
     comment.dislikeButtonColor = "secondary"
-    /*
+    
     if (this.loggedIn) {
       let exists = this.user.likedComments[comment.id];
       if (exists != undefined) {
@@ -164,7 +164,7 @@ export class PostDetailsComponent implements OnInit {
           comment.dislikeButtonColor = "primary";
         }
       }
-    }*/
+    }
   }
 
   share(post: any): void {
