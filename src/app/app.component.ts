@@ -11,8 +11,8 @@ export class AppComponent implements OnInit{
   title = 'PDIST-FRONT';
 
   url1 = "https://pdist-user-service.onrender.com/api/ping";
-  url2 = "https://pdist-back.onrender.com/api/ping";
-  url3 = "https://pdist-file-service.onrender.com/api/ping";
+  url2 = "https://pdist-back.onrender.com/api/posts/ping";
+  url3 = "https://pdist-file-service.onrender.com/api/files/ping";
 
   constructor(private keepAliveService: PingService) {}
 

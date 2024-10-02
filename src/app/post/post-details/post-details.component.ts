@@ -128,8 +128,7 @@ export class PostDetailsComponent implements OnInit {
       this.userService.likePost(postId, type).subscribe(
         (response: any) => {
           if(response) {
-            post.dislikes = response.dislikes;
-            post.likes = response.likes;
+            this.userService.setUser(response, true);
           }
         }, error => {
           console.error('Error: ', error);
@@ -142,8 +141,7 @@ export class PostDetailsComponent implements OnInit {
       this.userService.likeComment(commentId, type).subscribe(
         (response: any) => {
           if(response) {
-            comment.dislikes = response.dislikes;
-            comment.likes = response.likes;
+            this.userService.setUser(response, true);
           }
         }, error => {
           console.error('Error: ', error);
