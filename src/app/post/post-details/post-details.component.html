@@ -1,143 +1,145 @@
-<div *ngIf="postDTO != undefined">
-    <mat-card class="post-card">
-        <div  class="display-flex">
-            <mat-card-title>
-                <h1>{{ postDTO.title }}</h1>
-            </mat-card-title>
-            <mat-card-content>
-                <div style="display: flex; justify-content: center;">
-                    <img *ngIf="postDTO.userPhoto != null" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
-                    <div class="user-info">
-                        <h3 *ngIf="postDTO.userName != null" class="user-name">{{ postDTO.userName }}</h3>
+<div class="centered-container">
+    <div *ngIf="postDTO != undefined">
+        <mat-card class="post-card">
+            <div  class="display-flex">
+                <mat-card-title>
+                    <h1>{{ postDTO.title }}</h1>
+                </mat-card-title>
+                <mat-card-content>
+                    <div style="display: flex; justify-content: center;">
+                        <img *ngIf="postDTO.userPhoto != null" class="user-avatar" [src]="postDTO.userPhoto" alt="User Avatar">
+                        <div class="user-info">
+                            <h3 *ngIf="postDTO.userName != null" class="user-name">{{ postDTO.userName }}</h3>
+                        </div>
                     </div>
-                </div>
-            </mat-card-content>
-        </div>
-        <mat-card-content>
-            <h2>
-            {{ postDTO.content }}
-            </h2>
-        </mat-card-content>
-        <div *ngIf="postDTO.fileUrl">
-            <mat-card-content class="file-container">
-              <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl" alt="Imagem">
-        
-              <video #videoPlayer *ngIf="postDTO.fileType?.startsWith('video/')" [src]="postDTO.fileUrl" controls></video>
-        
-              <audio *ngIf="postDTO.fileType?.startsWith('audio/')" [src]="postDTO.fileUrl" controls></audio>
-  
-              <a *ngIf="!postDTO.fileType?.startsWith('image/') && !postDTO.fileType?.startsWith('video/') && !postDTO.fileType?.startsWith('audio/')" [href]="postDTO.fileUrl" download="{{postDTO.fileName}}">
-                  Baixar {{postDTO.fileName}}
-              </a>
-            </mat-card-content>
-        </div>
-        <div class="action-buttons">
+                </mat-card-content>
+            </div>
             <mat-card-content>
-                <button type="button" mat-mini-fab [color]="postDTO.likeButtonColor"  (click) = "likePost(postDTO, postDTO.id, 'like')">
-                    <mat-icon>thumb_up</mat-icon>
-                </button>{{postDTO.likes}}
-                <button type="button" mat-mini-fab [color]="postDTO.dislikeButtonColor"  (click) = "likePost(postDTO, postDTO.id, 'dislike')">
-                    <mat-icon>thumb_down</mat-icon>
-                </button>{{postDTO.dislikes}}
+                <h2>
+                {{ postDTO.content }}
+                </h2>
             </mat-card-content>
-            <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(postDTO)">
-                <mat-icon>share</mat-icon>
-            </button>
-        </div>
-    </mat-card>
-    <mat-card class="comment-session">
-        <mat-card-title>Comments: </mat-card-title>
-        <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
-            <mat-label>Comments</mat-label>
-            <textarea (keydown)="addComment($event)" id="comment" matInput [(ngModel)]="commentDTO.data" placeholder="Comment"></textarea>
-        </mat-form-field>
-        <div *ngIf="postDTO.comments.length > 0">
-            <div *ngFor="let comment of postDTO.comments; let i = index">
-                <mat-card class="comment-card">
-                    {{setCommentIconColor(comment)}}
-                    <div  class="display-flex">
-                        <mat-card-content class="comment-content">
-                            <p>{{comment.data}}</p>
-                        </mat-card-content>
-                        <div style="display: flex; justify-content: center;">
-                            <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
-                            <div class="user-info">
-                                <h4 *ngIf="comment.userName != null" class="user-name">{{ comment.userName }}</h4>
+            <div *ngIf="postDTO.fileUrl">
+                <mat-card-content class="file-container">
+                <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl" alt="Imagem">
+            
+                <video #videoPlayer *ngIf="postDTO.fileType?.startsWith('video/')" [src]="postDTO.fileUrl" controls></video>
+            
+                <audio *ngIf="postDTO.fileType?.startsWith('audio/')" [src]="postDTO.fileUrl" controls></audio>
+    
+                <a *ngIf="!postDTO.fileType?.startsWith('image/') && !postDTO.fileType?.startsWith('video/') && !postDTO.fileType?.startsWith('audio/')" [href]="postDTO.fileUrl" download="{{postDTO.fileName}}">
+                    Baixar {{postDTO.fileName}}
+                </a>
+                </mat-card-content>
+            </div>
+            <div class="action-buttons">
+                <mat-card-content>
+                    <button type="button" mat-mini-fab [color]="postDTO.likeButtonColor"  (click) = "likePost(postDTO, postDTO.id, 'like')">
+                        <mat-icon>thumb_up</mat-icon>
+                    </button>{{postDTO.likes}}
+                    <button type="button" mat-mini-fab [color]="postDTO.dislikeButtonColor"  (click) = "likePost(postDTO, postDTO.id, 'dislike')">
+                        <mat-icon>thumb_down</mat-icon>
+                    </button>{{postDTO.dislikes}}
+                </mat-card-content>
+                <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(postDTO)">
+                    <mat-icon>share</mat-icon>
+                </button>
+            </div>
+        </mat-card>
+        <mat-card class="comment-session">
+            <mat-card-title>Comments: </mat-card-title>
+            <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
+                <mat-label>Comments</mat-label>
+                <textarea (keydown)="addComment($event)" id="comment" matInput [(ngModel)]="commentDTO.data" placeholder="Comment"></textarea>
+            </mat-form-field>
+            <div *ngIf="postDTO.comments.length > 0">
+                <div *ngFor="let comment of postDTO.comments; let i = index">
+                    <mat-card class="comment-card">
+                        {{setCommentIconColor(comment)}}
+                        <div  class="display-flex">
+                            <mat-card-content class="comment-content">
+                                <p>{{comment.data}}</p>
+                            </mat-card-content>
+                            <div style="display: flex; justify-content: center;">
+                                <img *ngIf="comment.userPhoto != null" class="user-avatar" [src]="comment.userPhoto" alt="User Avatar">
+                                <div class="user-info">
+                                    <h4 *ngIf="comment.userName != null" class="user-name">{{ comment.userName }}</h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    
-                    <div class="action-buttons">
-                        <mat-card-content>
-                            <button type="button" mat-mini-fab [color]="comment.likeButtonColor"  (click) = "likeComment(comment, comment.id, 'like')">
-                                <mat-icon>thumb_up</mat-icon>
-                            </button>{{comment.likes}}
-                            <button type="button" mat-mini-fab [color]="comment.dislikeButtonColor"  (click) = "likeComment(comment, comment.id, 'dislike')">
-                                <mat-icon>thumb_down</mat-icon>
-                            </button>{{comment.dislikes}}
-                        </mat-card-content>
-                        <button mat-button (click)="toggleReplySession(i)">
-                            {{ replyComment[i] ? 'Cancel' : 'Reply' }}
-                        </button>
-                        <button *ngIf="comment.comments.length > 0" mat-button (click)="toggleReplies(i)">
-                            {{ showReplies[i] ? 'Hide replies' : 'Show replies' }}
-                        </button>
-                    </div>
-                    <div *ngIf="replyComment[i]">
-                        <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
-                            <textarea (keydown)="addCommentTo($event, comment.id)" id="comment" matInput [(ngModel)]="commentDTOto.data" placeholder="Comment"></textarea>
-                        </mat-form-field>
-                    </div>
-                    <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
-                        <div *ngFor="let comment2 of comment.comments">
-                            <mat-card class="reply-card">
-                                {{setCommentIconColor(comment2)}}
-                                <div class="display-flex">
-                                    <mat-card-content class="comment-content">
-                                        <p>{{comment2.data}}</p>
-                                    </mat-card-content>
-                                    <div style="display: flex; justify-content: center;">
-                                        <img *ngIf="comment2.userPhoto != null" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
-                                        <div class="user-info">
-                                            <h4 *ngIf="comment2.userName != null" class="user-name">{{ comment2.userName }}</h4>
-                                        </div>
-                                    </div>
-                                </div>  
-                                <div class="action-buttons">
-                                    <mat-card-content>
-                                        <button type="button" mat-mini-fab [color]="comment2.likeButtonColor"  (click) = "likeComment(comment2, comment2.id, 'like')">
-                                            <mat-icon>thumb_up</mat-icon>
-                                        </button>{{comment2.likes}}
-                                        <button type="button" mat-mini-fab [color]="comment2.dislikeButtonColor"  (click) = "likeComment(comment2, comment2.id, 'dislike')">
-                                            <mat-icon>thumb_down</mat-icon>
-                                        </button>{{comment2.dislikes}}
-                                    </mat-card-content>
-                                </div>
-                            </mat-card>
+                        
+                        
+                        <div class="action-buttons">
+                            <mat-card-content>
+                                <button type="button" mat-mini-fab [color]="comment.likeButtonColor"  (click) = "likeComment(comment, comment.id, 'like')">
+                                    <mat-icon>thumb_up</mat-icon>
+                                </button>{{comment.likes}}
+                                <button type="button" mat-mini-fab [color]="comment.dislikeButtonColor"  (click) = "likeComment(comment, comment.id, 'dislike')">
+                                    <mat-icon>thumb_down</mat-icon>
+                                </button>{{comment.dislikes}}
+                            </mat-card-content>
+                            <button mat-button (click)="toggleReplySession(i)">
+                                {{ replyComment[i] ? 'Cancel' : 'Reply' }}
+                            </button>
+                            <button *ngIf="comment.comments.length > 0" mat-button (click)="toggleReplies(i)">
+                                {{ showReplies[i] ? 'Hide replies' : 'Show replies' }}
+                            </button>
                         </div>
-                    </div>
-                </mat-card>
+                        <div *ngIf="replyComment[i]">
+                            <mat-form-field style="width: 700px;" appearance="outline" class="full-width">
+                                <textarea (keydown)="addCommentTo($event, comment.id)" id="comment" matInput [(ngModel)]="commentDTOto.data" placeholder="Comment"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="reply-session" *ngIf="showReplies[i] && comment.comments.length > 0">
+                            <div *ngFor="let comment2 of comment.comments">
+                                <mat-card class="reply-card">
+                                    {{setCommentIconColor(comment2)}}
+                                    <div class="display-flex">
+                                        <mat-card-content class="comment-content">
+                                            <p>{{comment2.data}}</p>
+                                        </mat-card-content>
+                                        <div style="display: flex; justify-content: center;">
+                                            <img *ngIf="comment2.userPhoto != null" class="user-avatar" [src]="comment2.userPhoto" alt="User Avatar">
+                                            <div class="user-info">
+                                                <h4 *ngIf="comment2.userName != null" class="user-name">{{ comment2.userName }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="action-buttons">
+                                        <mat-card-content>
+                                            <button type="button" mat-mini-fab [color]="comment2.likeButtonColor"  (click) = "likeComment(comment2, comment2.id, 'like')">
+                                                <mat-icon>thumb_up</mat-icon>
+                                            </button>{{comment2.likes}}
+                                            <button type="button" mat-mini-fab [color]="comment2.dislikeButtonColor"  (click) = "likeComment(comment2, comment2.id, 'dislike')">
+                                                <mat-icon>thumb_down</mat-icon>
+                                            </button>{{comment2.dislikes}}
+                                        </mat-card-content>
+                                    </div>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
             </div>
-        </div>
-    </mat-card>
+        </mat-card>
 
-    <!---
-    <h3>{{ postDTO.title }}</h3>
-    <p>{{ postDTO.content }}</p>
-    <div *ngIf="postDTO.fileUrl">
-        <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl"  alt="Imagem">
-            
-        <video *ngIf="postDTO.fileType?.startsWith('video/')" [src]="postDTO.fileUrl" controls></video>
-            
-        <audio *ngIf="postDTO.fileType?.startsWith('audio/')" [src]="postDTO.fileUrl" controls></audio>
-            
-        <a *ngIf="!postDTO.fileType?.startsWith('image/') && !postDTO.fileType?.startsWith('video/') && !postDTO.fileType?.startsWith('audio/')"
-            [href]="postDTO.fileUrl" download="{{postDTO.fileName}}">
-            Baixar {{postDTO.fileName}}
-        </a>
+        <!---
+        <h3>{{ postDTO.title }}</h3>
+        <p>{{ postDTO.content }}</p>
+        <div *ngIf="postDTO.fileUrl">
+            <img *ngIf="postDTO.fileType?.startsWith('image/')" [src]="postDTO.fileUrl"  alt="Imagem">
+                
+            <video *ngIf="postDTO.fileType?.startsWith('video/')" [src]="postDTO.fileUrl" controls></video>
+                
+            <audio *ngIf="postDTO.fileType?.startsWith('audio/')" [src]="postDTO.fileUrl" controls></audio>
+                
+            <a *ngIf="!postDTO.fileType?.startsWith('image/') && !postDTO.fileType?.startsWith('video/') && !postDTO.fileType?.startsWith('audio/')"
+                [href]="postDTO.fileUrl" download="{{postDTO.fileName}}">
+                Baixar {{postDTO.fileName}}
+            </a>
+        </div>
+        <div>
+            <textarea id="ctt" name="ctt" [(ngModel)]="comment.data" required placeholder="Comment"></textarea>
+        </div>--->
     </div>
-    <div>
-        <textarea id="ctt" name="ctt" [(ngModel)]="comment.data" required placeholder="Comment"></textarea>
-    </div>--->
 </div>

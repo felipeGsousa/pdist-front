@@ -1,77 +1,79 @@
-<div *ngIf="posts.length > 0; else noPosts">
-    <div *ngFor="let post of posts" class="post-item">
-      <mat-card class="post-card">
-        <div  class="display-flex">
-            <mat-card-title>
-                <h1>{{ post.title }}</h1>
-            </mat-card-title>
-            <mat-card-content>
-                <div style="display: flex; justify-content: center;">
-                    <img *ngIf="post.userPhoto != null" class="user-avatar" [src]="post.userPhoto" alt="User Avatar">
-                    <div class="user-info">
-                        <h3 *ngIf="post.userName != null" class="user-name">{{ post.userName }}</h3>
-                    </div>
-                </div>
-            </mat-card-content>
-        </div>
-        <mat-card-content class="post-card_content">
-          {{ post.content }}
-        </mat-card-content>
-        <mat-card-content></mat-card-content>
-        <div *ngIf="post.fileUrl">
-          <mat-card-content class="file-container">
-            <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
-      
-            <video #videoPlayer *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
-      
-            <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
+<div class="centered-container">
+  <div *ngIf="posts.length > 0; else noPosts">
+      <div *ngFor="let post of posts" class="post-item">
+        <mat-card class="post-card">
+          <div  class="display-flex">
+              <mat-card-title>
+                  <h1>{{ post.title }}</h1>
+              </mat-card-title>
+              <mat-card-content>
+                  <div style="display: flex; justify-content: center;">
+                      <img *ngIf="post.userPhoto != null" class="user-avatar" [src]="post.userPhoto" alt="User Avatar">
+                      <div class="user-info">
+                          <h3 *ngIf="post.userName != null" class="user-name">{{ post.userName }}</h3>
+                      </div>
+                  </div>
+              </mat-card-content>
+          </div>
+          <mat-card-content class="post-card_content">
+            {{ post.content }}
+          </mat-card-content>
+          <mat-card-content></mat-card-content>
+          <div *ngIf="post.fileUrl">
+            <mat-card-content class="file-container">
+              <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
+        
+              <video #videoPlayer *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
+        
+              <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
 
-            <a *ngIf="!post.fileType?.startsWith('image/') && !post.fileType?.startsWith('video/') && !post.fileType?.startsWith('audio/')" [href]="post.fileUrl" download="{{post.fileName}}">
-                Baixar {{post.fileName}}
-            </a>
-          </mat-card-content>
+              <a *ngIf="!post.fileType?.startsWith('image/') && !post.fileType?.startsWith('video/') && !post.fileType?.startsWith('audio/')" [href]="post.fileUrl" download="{{post.fileName}}">
+                  Baixar {{post.fileName}}
+              </a>
+            </mat-card-content>
+          </div>
+          <div class="action-buttons">
+            <mat-card-content>
+              <!--{{likeButtonColor(post)}}-->
+              <button type="button" mat-mini-fab [color]="post.likeButtonColor"  (click) = "likePost(post, post.id, 'like')">
+                <mat-icon>thumb_up</mat-icon>
+              </button>{{post.likes}}
+              <button type="button" mat-mini-fab [color]="post.dislikeButtonColor"  (click) = "likePost(post, post.id, 'dislike')">
+                <mat-icon>thumb_down</mat-icon>
+              </button>{{post.dislikes}}
+            </mat-card-content>
+            <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
+              <mat-icon>chat_bubble_outline</mat-icon>
+            </button>
+            <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(post)">
+              <mat-icon>share</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+
+        <!---
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+        <div *ngIf="post.fileUrl">
+
+          <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
+        
+          <video #videoPlayer *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
+        
+          <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
+        
+          <a *ngIf="!post.fileType?.startsWith('image/') && !post.fileType?.startsWith('video/') && !post.fileType?.startsWith('audio/')"
+            [href]="post.fileUrl" download="{{post.fileName}}">
+            Baixar {{post.fileName}}
+          </a>
         </div>
-        <div class="action-buttons">
-          <mat-card-content>
-            <!--{{likeButtonColor(post)}}-->
-            <button type="button" mat-mini-fab [color]="post.likeButtonColor"  (click) = "likePost(post, post.id, 'like')">
-              <mat-icon>thumb_up</mat-icon>
-            </button>{{post.likes}}
-            <button type="button" mat-mini-fab [color]="post.dislikeButtonColor"  (click) = "likePost(post, post.id, 'dislike')">
-              <mat-icon>thumb_down</mat-icon>
-            </button>{{post.dislikes}}
-          </mat-card-content>
+        <div>
           <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
             <mat-icon>chat_bubble_outline</mat-icon>
           </button>
-          <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="share(post)">
-            <mat-icon>share</mat-icon>
-          </button>
-        </div>
-      </mat-card>
-
-      <!---
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.content }}</p>
-      <div *ngIf="post.fileUrl">
-
-        <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
-      
-        <video #videoPlayer *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
-      
-        <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
-      
-        <a *ngIf="!post.fileType?.startsWith('image/') && !post.fileType?.startsWith('video/') && !post.fileType?.startsWith('audio/')"
-           [href]="post.fileUrl" download="{{post.fileName}}">
-          Baixar {{post.fileName}}
-        </a>
+        </div>--->
       </div>
-      <div>
-        <button type="button" mat-mini-fab color="primary" class="upload-btn" (click) = "getPost(post.id)">
-          <mat-icon>chat_bubble_outline</mat-icon>
-        </button>
-      </div>--->
-    </div>
+  </div>
 </div>
 
   
