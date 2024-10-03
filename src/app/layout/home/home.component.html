@@ -1,1 +1,31 @@
 <button *ngIf="loggedIn" type="button" mat-flat-button color="primary" (click)="createForum()">New Forum</button>
+<div class="centered-container">
+    <div *ngIf="posts.length > 0; else noPosts">
+        <div *ngFor="let post of posts" class="post-item">
+          <mat-card class="post-card">
+            <div  class="display-flex">
+                <mat-card-title>
+                    <h1>{{ post.title }}</h1>
+                </mat-card-title>
+            </div>
+            <mat-card-content class="post-card_content">
+              {{ post.content }}
+            </mat-card-content>
+            <mat-card-content></mat-card-content>
+            <div *ngIf="post.fileUrl">
+              <mat-card-content class="file-container">
+                <img *ngIf="post.fileType?.startsWith('image/')" [src]="post.fileUrl" alt="Imagem">
+          
+                <video #videoPlayer *ngIf="post.fileType?.startsWith('video/')" [src]="post.fileUrl" controls></video>
+          
+                <audio *ngIf="post.fileType?.startsWith('audio/')" [src]="post.fileUrl" controls></audio>
+  
+                <a *ngIf="!post.fileType?.startsWith('image/') && !post.fileType?.startsWith('video/') && !post.fileType?.startsWith('audio/')" [href]="post.fileUrl" download="{{post.fileName}}">
+                    Baixar {{post.fileName}}
+                </a>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </div>
+    </div>
+  </div>

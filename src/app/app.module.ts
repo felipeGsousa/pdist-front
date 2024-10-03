@@ -12,6 +12,7 @@ import { PostModule } from './post/post.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { LayoutModule } from './layout/layout.module';
+import { GraphQLModule } from './graphql.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LayoutModule } from './layout/layout.module';
     MatSelectModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent]
