@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "PDIST-FRONT"
+  "defaultProject": "PDIST-FRONT",
+  "cli": {
+    "analytics": false
+  }
 }
