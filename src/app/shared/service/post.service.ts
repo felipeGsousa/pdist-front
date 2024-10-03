@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostDTO } from '../model/postDTO';
 import { FileDTO } from '../model/fileDTO';
+import { Apollo, gql } from 'apollo-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class PostService {
 
   private id: string = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apollo: Apollo) { }
 
   addPost(forumId:string, postData: any): Observable<any> {
     return this.http.post(this.url+`/${forumId}/new`, postData, { responseType: 'text' });
@@ -45,5 +46,29 @@ export class PostService {
 
   getPostId(): string{
     return this.id;
+  }
+
+  getRecentPosts(userId: string): Observable<any> {
+    return this.apollo.query({
+      query: gql`
+        query GetRecentPosts($userId: ID!) {
+          getRecentPosts(userId: $userId) {
+            _id
+            title
+            content
+            createdAt
+            file {
+              contentType
+              data
+              name
+            }
+            fileId
+          }
+        }
+      `,
+      variables: {
+        userId: userId
+      }
+    });
   }
 }
