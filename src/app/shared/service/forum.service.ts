@@ -10,7 +10,8 @@ export class ForumService {
 
   private id: string = "";
 
-  private url = "https://pdist-back.onrender.com/api/forums";
+  private url = "https://pdist-loadbalancer-production.up.railway.app";
+  //private url = "https://pdist-back.onrender.com/api/forums";
   //private url = "http://localhost:8082/api/forums";
 
   constructor(private http: HttpClient) {

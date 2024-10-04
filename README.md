@@ -1,27 +1,22 @@
-# PDISTFRONT
+#Projeto de programação distribuida
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
-## Development server
+## Backend em springboot que lida com foruns, postagens e comentários:
+	https://github.com/felipeGsousa/pdist-back
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Backend em springboot que lida com autenticação e funções do usuário:
+	https://github.com/felipeGsousa/pdist-user-service
 
-## Code scaffolding
+## Backend em springboot que lida com arquivos:
+	https://github.com/felipeGsousa/pdist-file-service
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Servidor em python que lida com balanceamento de carga, utiliza ferramenta prometheus para métricas:
+	https://github.com/felipeGsousa/PDIST-load_balancer
 
-## Build
+## Servidor GraphQL utilizando apollo e JavaScript que lida com buscas de postagens mais recentes, fóruns e usuários:
+	https://github.com/felipeGsousa/pdist_graphQL
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Servidor gRPC com java para lidar com criação e recuperação de arquivos:
+	https://github.com/felipeGsousa/PDIST-gRPC-server
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -9,7 +9,9 @@ import { FileDTO } from '../model/fileDTO';
 })
 export class PostService {
 
-  private url = "https://pdist-back.onrender.com/api/posts";
+
+  private url = "https://pdist-loadbalancer-production.up.railway.app/load-balanced/posts";
+  //private url = "https://pdist-back.onrender.com/api/posts";
   //private url = "http://localhost:8082/api/posts"
   //private fileUrl = "http://localhost:8081/api/files"
   //private fileUrl = "https://pdist-file-service.onrender.com/api/files"
